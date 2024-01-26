@@ -6,7 +6,7 @@ public class PlayerPointsManager : MonoBehaviour
 {
     public List<Upgrade> upgrades;
     public int points = 0;
-    public float bonusStrength;
+    public float bonusWeight;
     public float bonusSpeed;
     public float bonusSize;
 
@@ -24,7 +24,14 @@ public class PlayerPointsManager : MonoBehaviour
     public void BuyUpgrade(Upgrade upgrade)
     {
         upgrades.Add(upgrade);
+        bonusSize += upgrade.bonusSize;
+        bonusWeight += upgrade.bonusWeight;
+        bonusSpeed += upgrade.bonusSpeed;
 
+    }
 
+    public void AddPoints(int amount)
+    {
+        points += amount;
     }
 }
