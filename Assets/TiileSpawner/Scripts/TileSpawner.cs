@@ -24,11 +24,13 @@ public class TileSpawner : MonoBehaviour
             {
                 float zOffset = Mathf.Abs((x % 2f) / 2f);
 
-                Vector3 position = new Vector3(x * m_TileSize, 0, (z - (howMany - 1) / 2 - zOffset) * m_TileSize);
+                Vector3 position = new Vector3(x * m_TileSize * (1f/1.15f), 0, (z - (howMany - 1) / 2 - zOffset) * m_TileSize);
 
                 int toSpawn = Random.Range(0, m_ToSpawn.Count);
 
-                Instantiate(m_ToSpawn[toSpawn], position, Quaternion.identity);
+                GameObject newTile = Instantiate(m_ToSpawn[toSpawn], position, Quaternion.identity);
+
+                newTile.GetComponent<Tile>().Drop(60f/position.magnitude);
             }
         }
     }
