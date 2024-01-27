@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IHitable
+public class Hittable : MonoBehaviour
 {
-    public abstract void Hit(PlayerPointsManager player);
+    
 }

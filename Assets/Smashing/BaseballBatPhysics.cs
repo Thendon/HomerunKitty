@@ -8,6 +8,7 @@ public class BaseballBatPhysics : MonoBehaviour
     public float bonusWeight;
     public float bonusSize;
     public Rigidbody owner;
+    public PlayerPointsManager player;
 
     Vector3 prevPos;
     Vector3 velocity;
@@ -44,11 +45,11 @@ public class BaseballBatPhysics : MonoBehaviour
         IHitable hitable = collision.rigidbody.gameObject.GetComponent<IHitable>();
         if (hitable != null)
         {
-            hitable.Hit();
+            hitable.Hit(player);
         }
 
         Vector3 force = highestContact * velocity * (initialWeight + bonusWeight);
-        Debug.Log($"{highestContact} * {velocity.magnitude} * {initialWeight} + {bonusWeight} = {force.magnitude}");
+        Debug.Log($"height: {highestContact} * velocity: {velocity.magnitude} * weight {initialWeight} + bonus {bonusWeight} = {force.magnitude}");
         collision.rigidbody.AddForce(force);
     }
 
