@@ -408,10 +408,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ToSpawn:
-  - {fileID: 6016475681258694751, guid: 36caafb391ddc184f9a069aa81dae00a, type: 3}
-  - {fileID: 6873557349694649523, guid: 0ea3138f63067724eaf2c60a6dc3f4d9, type: 3}
-  - {fileID: 1434570578359378523, guid: 50a612fa059b61a478edbb9079c2368e, type: 3}
-  - {fileID: 572549983521947608, guid: 84c8fb352e7f22c46b980de36434814d, type: 3}
+  - {fileID: 1278276451620929080, guid: e7aed14dc0a08ae49a518dc75f5e6fc4, type: 3}
+  - {fileID: 1651041628217114820, guid: 90e8c22117d35ba4495a3f96ca174379, type: 3}
+  - {fileID: 1834921306239466113, guid: d75e4691bc4c4834f806b66ed303ca31, type: 3}
   m_Size: {x: 11, y: 11}
   m_TileSize: 1
 --- !u!4 &1061740316
