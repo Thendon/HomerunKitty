@@ -14,7 +14,7 @@ public class PlayerPointsManager : MonoBehaviour
     public string player;
     public bool dead = false;
     public GameObject endScreen;
-
+    public GameObject scorePrefab;
 
     void Start()
     {
@@ -68,5 +68,13 @@ public class PlayerPointsManager : MonoBehaviour
     public void DeadHandler()
     {
         GameObject.Instantiate(endScreen);
+    }
+
+    
+    public void HitScore(Vector3 hitPos, float amount)
+    {
+        ScoreEffect scoreInstance = Instantiate(scorePrefab).GetComponent<ScoreEffect>();
+        scoreInstance.Init(amount);
+        scoreInstance.transform.position = hitPos;
     }
 }

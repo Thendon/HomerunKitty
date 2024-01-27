@@ -35,11 +35,15 @@ public class BaseballBatPhysics : MonoBehaviour
         ContactPoint[] contacts = new ContactPoint[collision.contactCount];
         int count = collision.GetContacts(contacts);
         float highestContact = 0.0f;
+        Vector3 hitPos = collision.gameObject.transform.position + Vector3.up * 1.0f;
         for (int i = 0; i < count; i++)
         {
             Vector3 localPos = transform.InverseTransformPoint(contacts[i].point);
             if (localPos.y > highestContact)
+            {
                 highestContact = localPos.y;
+                hitPos = contacts[i].point;
+            }
         }
 
         IHitable hitable = collision.rigidbody.gameObject.GetComponent<IHitable>();
@@ -51,6 +55,7 @@ public class BaseballBatPhysics : MonoBehaviour
         Vector3 force = highestContact * velocity * (initialWeight + bonusWeight);
         Debug.Log($"height: {highestContact} * velocity: {velocity.magnitude} * weight {initialWeight} + bonus {bonusWeight} = {force.magnitude}");
         collision.rigidbody.AddForce(force);
+        player.HitScore(hitPos, force.magnitude);
     }
 
     public void AddUpgrade(float bonusSize, float bonusWeight, float bonusSpeed)
