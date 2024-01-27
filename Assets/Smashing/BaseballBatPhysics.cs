@@ -49,7 +49,7 @@ public class BaseballBatPhysics : MonoBehaviour
         }
 
         Vector3 force = highestContact * velocity * (initialWeight + bonusWeight);
-        Debug.Log($"height: {highestContact} * velocity: {velocity.magnitude} * weight {initialWeight} + bonus {bonusWeight} = {force.magnitude}");
+        //Debug.Log($"height: {highestContact} * velocity: {velocity.magnitude} * weight {initialWeight} + bonus {bonusWeight} = {force.magnitude}");
         collision.rigidbody.AddForce(force);
     }
 
