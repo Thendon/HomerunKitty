@@ -5,6 +5,10 @@ public class BaseballBatPhysics : MonoBehaviour
     private Rigidbody rb;
     public Vector3 velocity;
     public float debugHitSpeed = 10;
+    public float initialWeight = 10000;
+    public float bonusWeight;
+    public float bonusSize;
+
 
     public void Start()
     {
@@ -13,7 +17,7 @@ public class BaseballBatPhysics : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {       
-        collision.rigidbody.AddForce(velocity * 100000f);
+        collision.rigidbody.AddForce(velocity * (initialWeight + bonusWeight));
     }
 
     public void Update()
@@ -23,5 +27,13 @@ public class BaseballBatPhysics : MonoBehaviour
             velocity = new Vector3(debugHitSpeed * Time.deltaTime, 0, 0);
             transform.position += velocity;
         }
+    }
+
+    public void AddUpgrade(float bonusSize, float bonusWeight, float bonusSpeed)
+    {
+        this.bonusSize = bonusSize;
+        this.bonusWeight = bonusWeight;
+
+        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.x + bonusSize, transform.localScale.z);
     }
 }
