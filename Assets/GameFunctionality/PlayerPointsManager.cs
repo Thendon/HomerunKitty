@@ -30,7 +30,7 @@ public class PlayerPointsManager : MonoBehaviour
     {
         Debug.Log("UpgradeBuy");
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 20f, upgradeLayer))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 2f, upgradeLayer))
         {
             Debug.Log("Raycast true");
             Upgrade upgrade = hit.transform.GetComponent<Upgrade>();
