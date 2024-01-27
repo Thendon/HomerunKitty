@@ -1,3 +1,4 @@
+using catHomerun.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,11 +7,13 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 // Boids behaviour based on https://github.com/SebLague/Boids
-public class BoidController : MonoBehaviour
+public class BoidController : SingletonScene<BoidController>
 {
     // Settings
 
     // Revive hit once based on timer
+
+    public PlayerPointsManager player;
 
     // Rule Weights
 
@@ -100,13 +103,13 @@ public class BoidController : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void InitialSpawn()
     {
         boidsData = new BoidData[initialBoidAmount];
 
         for (int i = 0; i < initialBoidAmount; i++)
         {
-            Boid boidInstance = Instantiate(boidPrefab).GetComponent<Boid>();
+            Boid boidInstance = Instantiate(boidPrefab).GetComponentInChildren<Boid>();
 
             BoidData boidData = new BoidData();
 
@@ -114,7 +117,9 @@ public class BoidController : MonoBehaviour
             spawnPosition.x += (spawnArea.bounds.max.x - spawnArea.bounds.min.x) * UnityEngine.Random.Range(0.0f, 1.0f);
             spawnPosition.z += (spawnArea.bounds.max.z - spawnArea.bounds.min.z) * UnityEngine.Random.Range(0.0f, 1.0f);
 
-            spawnPosition.y = 0.0f;
+            Physics.Raycast(spawnPosition + Vector3.up * 1000.0f, Vector3.down, out RaycastHit hit, float.MaxValue, LayerMask.NameToLayer("Ground"));
+
+            spawnPosition.y = hit.point.y;
 
             boidInstance.transform.position = spawnPosition;
 
@@ -266,15 +271,21 @@ public class BoidController : MonoBehaviour
             acceleration.y = 0.0f;
 
             Vector3 velocity = boid.rigidBody.velocity;
-            velocity += acceleration * Time.deltaTime;
+            //float temp = -velocity.y;
+            //velocity.y = velocity.z;
+            //velocity.z = temp;
+            velocity += acceleration * Time.deltaTime *10;
             float speed = velocity.magnitude;
             Vector3 dir = velocity / speed;
             speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
+            //temp = -dir.y;
+            //dir.y = dir.z;
+            //dir.z = temp;
             boid.rigidBody.velocity = dir * speed;
-
+            
             dir.y = 0.0f;
-
-            boid.transform.LookAt(boid.transform.position + dir, Vector3.up);
+            //if(boid.rigidBody.velocity.magnitude > 0.4f)
+                boid.rigidBody.transform.LookAt(boid.rigidBody.transform.position + dir, Vector3.up);
 
             if (boid.transform.position.x < spawnArea.bounds.min.x)
             {

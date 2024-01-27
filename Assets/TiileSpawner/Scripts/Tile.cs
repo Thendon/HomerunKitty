@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    const float despawnHeight = -100.0f;
+
+    private void Update()
+    {
+        if(transform.position.y < despawnHeight)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void Drop(float TimeToDrop)
     {
         Invoke("Drop", TimeToDrop);
