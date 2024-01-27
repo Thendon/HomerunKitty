@@ -46,7 +46,7 @@ public class BoidSpawner : MonoBehaviour
             spawnPosition.z += (spawnArea.bounds.max.z - spawnArea.bounds.min.z) * UnityEngine.Random.Range(0.0f, 1.0f);
 
             Physics.Raycast(spawnPosition + Vector3.up * 1000.0f, Vector3.down, out RaycastHit hit, float.MaxValue, LayerMask.NameToLayer("Ground"));
-            spawnPosition.y = hit.point.y;
+            spawnPosition.y = hit.point.y + boidInstance.boidCollider.bounds.extents.y;
 
             boidInstance.transform.position = spawnPosition;
 

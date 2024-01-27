@@ -90,6 +90,11 @@ public class BoidController : SingletonScene<BoidController>
     {
         if(boids.Contains(boid))
         {
+            if (boid.isHit && player != null)
+            {
+                player.AddPoints(1 /* + distance from hit*/);
+            }
+
             int index = boids.IndexOf(boid);
 
             for (int i = index; i < boids.Count - 2; i++)
@@ -119,7 +124,7 @@ public class BoidController : SingletonScene<BoidController>
 
             Physics.Raycast(spawnPosition + Vector3.up * 1000.0f, Vector3.down, out RaycastHit hit, float.MaxValue, LayerMask.NameToLayer("Ground"));
 
-            spawnPosition.y = hit.point.y;
+            spawnPosition.y = hit.point.y + boidInstance.boidCollider.bounds.extents.y;
 
             boidInstance.transform.position = spawnPosition;
 
@@ -274,7 +279,7 @@ public class BoidController : SingletonScene<BoidController>
             //float temp = -velocity.y;
             //velocity.y = velocity.z;
             //velocity.z = temp;
-            velocity += acceleration * Time.deltaTime *10;
+            velocity += acceleration * Time.deltaTime;
             float speed = velocity.magnitude;
             Vector3 dir = velocity / speed;
             speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
@@ -287,24 +292,24 @@ public class BoidController : SingletonScene<BoidController>
             //if(boid.rigidBody.velocity.magnitude > 0.4f)
                 boid.rigidBody.transform.LookAt(boid.rigidBody.transform.position + dir, Vector3.up);
 
-            if (boid.transform.position.x < spawnArea.bounds.min.x)
-            {
-                //boid.transform.Translate(Vector3.right * spawnArea.bounds.extents.x);
-                boid.rigidBody.MovePosition(Vector3.right * spawnArea.bounds.extents.x);
-            }
-            if (boid.transform.position.z < spawnArea.bounds.min.z)
-            {
-                boid.rigidBody.MovePosition(Vector3.forward * spawnArea.bounds.extents.z);
-            }
+            //if (boid.transform.position.x < spawnArea.bounds.min.x)
+            //{
+            //    //boid.transform.Translate(Vector3.right * spawnArea.bounds.extents.x);
+            //    boid.rigidBody.MovePosition(Vector3.right * spawnArea.bounds.extents.x);
+            //}
+            //if (boid.transform.position.z < spawnArea.bounds.min.z)
+            //{
+            //    boid.rigidBody.MovePosition(Vector3.forward * spawnArea.bounds.extents.z);
+            //}
 
-            if (boid.transform.position.x > spawnArea.bounds.max.x)
-            {
-                boid.rigidBody.MovePosition(-Vector3.right * spawnArea.bounds.extents.x);
-            }
-            if (boid.transform.position.z > spawnArea.bounds.max.z)
-            {
-                boid.rigidBody.MovePosition(-Vector3.forward * spawnArea.bounds.extents.z);
-            }
+            //if (boid.transform.position.x > spawnArea.bounds.max.x)
+            //{
+            //    boid.rigidBody.MovePosition(-Vector3.right * spawnArea.bounds.extents.x);
+            //}
+            //if (boid.transform.position.z > spawnArea.bounds.max.z)
+            //{
+            //    boid.rigidBody.MovePosition(-Vector3.forward * spawnArea.bounds.extents.z);
+            //}
 
         }
 
