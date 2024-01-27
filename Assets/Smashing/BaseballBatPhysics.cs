@@ -8,7 +8,7 @@ public class BaseballBatPhysics : MonoBehaviour
     public float initialWeight = 10000;
     public float bonusWeight;
     public float bonusSize;
-
+    public Rigidbody owner;
 
     public void Start()
     {
@@ -16,17 +16,13 @@ public class BaseballBatPhysics : MonoBehaviour
     }
 
     public void OnCollisionEnter(Collision collision)
-    {       
-        collision.rigidbody.AddForce(velocity * (initialWeight + bonusWeight));
-    }
-
-    public void Update()
     {
-        if (Input.GetKey(KeyCode.A))
-        {
-            velocity = new Vector3(debugHitSpeed * Time.deltaTime, 0, 0);
-            transform.position += velocity;
-        }
+        if (collision.rigidbody == null)
+            return;
+        if (collision.rigidbody == owner)
+            return;
+
+        collision.rigidbody.AddForce(velocity * (initialWeight + bonusWeight));
     }
 
     public void AddUpgrade(float bonusSize, float bonusWeight, float bonusSpeed)
