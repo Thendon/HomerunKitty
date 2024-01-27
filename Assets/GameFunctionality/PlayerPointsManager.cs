@@ -11,6 +11,7 @@ public class PlayerPointsManager : MonoBehaviour
     public float bonusSize;
     public BaseballBatPhysics bat;
     public LayerMask upgradeLayer;
+    public string player;
 
 
     void Start()
