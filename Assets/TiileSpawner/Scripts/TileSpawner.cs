@@ -30,6 +30,8 @@ public class TileSpawner : MonoBehaviour
 
                 GameObject newTile = Instantiate(m_ToSpawn[toSpawn], position, Quaternion.identity);
 
+                newTile.transform.localScale = Vector3.one * 100f * m_TileSize;
+
                 newTile.GetComponent<Tile>().Drop(60f/position.magnitude);
             }
         }
