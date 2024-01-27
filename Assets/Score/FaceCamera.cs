@@ -6,20 +6,25 @@ using UnityEngine.Rendering;
 [ExecuteAlways]
 public class FaceCamera : MonoBehaviour
 {
-    void OnEnable()
-    {
-        RenderPipelineManager.beginCameraRendering += OnRendered;
-    }
+    //void OnEnable()
+    //{
+    //    RenderPipelineManager.beginCameraRendering += OnRendered;
+    //}
 
-    void OnDisable()
-    {
-        RenderPipelineManager.beginCameraRendering -= OnRendered;
-    }
+    //void OnDisable()
+    //{
+    //    RenderPipelineManager.beginCameraRendering -= OnRendered;
+    //}
 
-    private void OnRendered(ScriptableRenderContext context, Camera cam)
+    //private void OnRendered(ScriptableRenderContext context, Camera cam)
+    //{
+    //    if (cam == null)
+    //        return;
+    //    transform.LookAt(transform.position + cam.transform.forward, cam.transform.up);
+    //}
+
+    private void LateUpdate()
     {
-        if (cam == null)
-            return;
-        transform.LookAt(transform.position + cam.transform.forward, cam.transform.up);
+        transform.LookAt(transform.position + Camera.main.transform.forward, Camera.main.transform.up);
     }
 }

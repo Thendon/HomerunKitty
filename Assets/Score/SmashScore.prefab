@@ -341,6 +341,7 @@ GameObject:
   - component: {fileID: 7859265292619624916}
   - component: {fileID: 2700264811801276703}
   - component: {fileID: 3566124272135997801}
+  - component: {fileID: 2807122242466048862}
   m_Layer: 0
   m_Name: SmashScore
   m_TagString: Untagged
@@ -356,7 +357,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621094491168317090}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.3162278, y: -0.000000028272973, z: 0.000000009424321, w: 0.9486833}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -383,13 +384,9 @@ MonoBehaviour:
   text: {fileID: 5645742971130507032}
   liveTime: 2
   soundEffects:
-  - {fileID: 8300000, guid: ded643f9e41702e4887919675bb0bff5, type: 3}
-  - {fileID: 8300000, guid: b53b76833029117478d88027ed3e7b32, type: 3}
-  - {fileID: 8300000, guid: 657d5152a9aced949b3547211cb77456, type: 3}
-  - {fileID: 8300000, guid: 21f5a94c5a1236e4d9c35e7d94f24c32, type: 3}
-  - {fileID: 8300000, guid: 85010faf5afa56345ac3562a903cb91a, type: 3}
+  - {fileID: 8300000, guid: 7b8ca63488f6a9b4e8fa38b5e4286c83, type: 3}
   audioSource: {fileID: 3566124272135997801}
-  movementVector: {x: 0, y: 0.1, z: 0}
+  movementVector: {x: 0.2, y: 1, z: 0}
 --- !u!82 &3566124272135997801
 AudioSource:
   m_ObjectHideFlags: 0
@@ -486,6 +483,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2807122242466048862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4621094491168317090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfe9e121db2b4e4e9411cbb21d91221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4942310146258155920
 GameObject:
   m_ObjectHideFlags: 0

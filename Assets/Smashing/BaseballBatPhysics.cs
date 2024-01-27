@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -10,10 +11,13 @@ public class BaseballBatPhysics : MonoBehaviour
     public float bonusSize;
     public Rigidbody owner;
     public PlayerPointsManager player;
+    public float hitCooldown = 1.0f;
     public GameObject hitEffectPrefab;
 
     Vector3 prevPos;
     Vector3 velocity;
+
+    Dictionary<int, float> hitableNextHitTime = new Dictionary<int, float>();
 
     public void Start()
     {
@@ -53,6 +57,12 @@ public class BaseballBatPhysics : MonoBehaviour
         IHitable hitable = collision.rigidbody.gameObject.GetComponent<IHitable>();
         if (hitable != null)
         {
+            int hash = hitable.GetHashCode();
+            if (!hitableNextHitTime.ContainsKey(hash))
+                hitableNextHitTime.Add(hash, Time.time + hitCooldown);
+            else if (Time.time < hitableNextHitTime[hash])
+                return;
+
             hitable.Hit(player);
 
             //VisualEffect hitEffect = Instantiate(hitEffectPrefab, collision.contacts[0].point, Quaternion.identity).;
