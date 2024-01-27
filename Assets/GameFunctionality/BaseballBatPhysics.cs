@@ -18,6 +18,7 @@ public class BaseballBatPhysics : MonoBehaviour
     public void OnCollisionEnter(Collision collision)
     {       
         collision.rigidbody.AddForce(velocity * (initialWeight + bonusWeight));
+
     }
 
     public void Update()

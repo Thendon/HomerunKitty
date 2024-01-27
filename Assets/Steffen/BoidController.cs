@@ -80,7 +80,7 @@ public class BoidController : MonoBehaviour
 
         boids.Add(boid);
 
-        boid.transform.SetParent(boidsParent);
+        //boid.transform.SetParent(boidsParent);
     }
 
     public void RemoveBoid(Boid boid)
@@ -106,7 +106,7 @@ public class BoidController : MonoBehaviour
 
         for (int i = 0; i < initialBoidAmount; i++)
         {
-            Boid boidInstance = Instantiate(boidPrefab).GetComponent<Boid>();
+            Boid boidInstance = Instantiate(boidPrefab).GetComponentInChildren<Boid>();
 
             BoidData boidData = new BoidData();
 
@@ -131,11 +131,11 @@ public class BoidController : MonoBehaviour
             boids.Add(boidInstance);
             boidsData[i] = boidData;
 
-            boidInstance.transform.SetParent(boidsParent);
+            //boidInstance.transform.SetParent(boidsParent);
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if(boids.Count == 0)
         {
@@ -266,15 +266,21 @@ public class BoidController : MonoBehaviour
             acceleration.y = 0.0f;
 
             Vector3 velocity = boid.rigidBody.velocity;
-            velocity += acceleration * Time.deltaTime;
+            //float temp = -velocity.y;
+            //velocity.y = velocity.z;
+            //velocity.z = temp;
+            velocity += acceleration * Time.deltaTime *10;
             float speed = velocity.magnitude;
             Vector3 dir = velocity / speed;
             speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
+            //temp = -dir.y;
+            //dir.y = dir.z;
+            //dir.z = temp;
             boid.rigidBody.velocity = dir * speed;
-
+            
             dir.y = 0.0f;
-
-            boid.transform.LookAt(boid.transform.position + dir, Vector3.up);
+            //if(boid.rigidBody.velocity.magnitude > 0.4f)
+                boid.rigidBody.transform.LookAt(boid.rigidBody.transform.position + dir, Vector3.up);
 
             if (boid.transform.position.x < spawnArea.bounds.min.x)
             {
