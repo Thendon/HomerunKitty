@@ -23,6 +23,7 @@ public class BaseballBatPhysics : MonoBehaviour
             return;
 
         collision.rigidbody.AddForce(velocity * (initialWeight + bonusWeight));
+
     }
 
     public void AddUpgrade(float bonusSize, float bonusWeight, float bonusSpeed)

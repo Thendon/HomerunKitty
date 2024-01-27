@@ -12,6 +12,8 @@ public class PlayerPointsManager : MonoBehaviour
     public BaseballBatPhysics bat;
     public LayerMask upgradeLayer;
     public string player;
+    public bool dead = false;
+    public GameObject endScreen;
 
 
     void Start()
@@ -24,6 +26,11 @@ public class PlayerPointsManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E))
         {
             BuyUpgrade();
+        }
+        if (transform.position.y < 10f && dead == false)
+        {
+            dead = true;
+            DeadHandler();
         }
     }
 
@@ -55,5 +62,11 @@ public class PlayerPointsManager : MonoBehaviour
     public void AddPoints(int amount)
     {
         points += amount;
+    }
+
+
+    public void DeadHandler()
+    {
+        GameObject.Instantiate(endScreen);
     }
 }
