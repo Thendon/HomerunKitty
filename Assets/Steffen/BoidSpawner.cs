@@ -8,11 +8,11 @@ public class BoidSpawner : MonoBehaviour
 
     public Collider spawnArea;
 
-    public float minSpawnAmount;
-    public float maxSpawnAmount;
+    public float minSpawnAmount = 5;
+    public float maxSpawnAmount = 10;
 
-    public float minSpawnIntervallTime;
-    public float maxSpawnIntervallTime;
+    public float minSpawnIntervallTime = 5;
+    public float maxSpawnIntervallTime = 10;
 
     private float currentIntervallTime;
     private float currentSpawnAmount;
@@ -20,6 +20,11 @@ public class BoidSpawner : MonoBehaviour
 
     void Start()
     {
+        spawnArea = GetComponent<Collider>();
+
+        // TODO(Steffen): Dont
+        boidController = FindObjectOfType<BoidController>();
+
         StartNewCycle();
     }
 
@@ -40,7 +45,8 @@ public class BoidSpawner : MonoBehaviour
             spawnPosition.x += (spawnArea.bounds.max.x - spawnArea.bounds.min.x) * UnityEngine.Random.Range(0.0f, 1.0f);
             spawnPosition.z += (spawnArea.bounds.max.z - spawnArea.bounds.min.z) * UnityEngine.Random.Range(0.0f, 1.0f);
 
-            spawnPosition.y = 0.0f;
+            Physics.Raycast(spawnPosition + Vector3.up * 1000.0f, Vector3.down, out RaycastHit hit, float.MaxValue, LayerMask.NameToLayer("Ground"));
+            spawnPosition.y = hit.point.y;
 
             boidInstance.transform.position = spawnPosition;
 

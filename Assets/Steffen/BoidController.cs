@@ -1,3 +1,4 @@
+using catHomerun.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,11 +7,13 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 // Boids behaviour based on https://github.com/SebLague/Boids
-public class BoidController : MonoBehaviour
+public class BoidController : SingletonScene<BoidController>
 {
     // Settings
 
     // Revive hit once based on timer
+
+    public PlayerPointsManager player;
 
     // Rule Weights
 
@@ -80,7 +83,7 @@ public class BoidController : MonoBehaviour
 
         boids.Add(boid);
 
-        //boid.transform.SetParent(boidsParent);
+        boid.transform.SetParent(boidsParent);
     }
 
     public void RemoveBoid(Boid boid)
@@ -100,7 +103,7 @@ public class BoidController : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void InitialSpawn()
     {
         boidsData = new BoidData[initialBoidAmount];
 
@@ -114,7 +117,9 @@ public class BoidController : MonoBehaviour
             spawnPosition.x += (spawnArea.bounds.max.x - spawnArea.bounds.min.x) * UnityEngine.Random.Range(0.0f, 1.0f);
             spawnPosition.z += (spawnArea.bounds.max.z - spawnArea.bounds.min.z) * UnityEngine.Random.Range(0.0f, 1.0f);
 
-            spawnPosition.y = 0.0f;
+            Physics.Raycast(spawnPosition + Vector3.up * 1000.0f, Vector3.down, out RaycastHit hit, float.MaxValue, LayerMask.NameToLayer("Ground"));
+
+            spawnPosition.y = hit.point.y;
 
             boidInstance.transform.position = spawnPosition;
 
@@ -131,11 +136,11 @@ public class BoidController : MonoBehaviour
             boids.Add(boidInstance);
             boidsData[i] = boidData;
 
-            //boidInstance.transform.SetParent(boidsParent);
+            boidInstance.transform.SetParent(boidsParent);
         }
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         if(boids.Count == 0)
         {

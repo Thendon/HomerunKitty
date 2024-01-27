@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.Assertions;
 
 namespace HomerunKitty
 {
@@ -37,6 +38,19 @@ namespace HomerunKitty
             animator = GetComponentInChildren<Animator>();
 
             ConfigureRigidbody();
+        }
+
+        public void GroundPlayer()
+        {
+            Ray ray = new Ray(transform.position + Vector3.up * 1000.0f, Vector3.down);
+            if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, groundLayerMask))
+            {
+                transform.position = hit.point;
+            }
+            else
+            {
+                Assert.IsTrue(false);
+            }
         }
 
         public bool IsTouchingGround()

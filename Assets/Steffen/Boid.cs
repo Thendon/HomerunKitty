@@ -31,6 +31,7 @@ public class Boid : MonoBehaviour, IHitable
             player.AddPoints(1 /* + distance from hit*/);
         }
 
-        Destroy(this.gameObject);
+        BoidController.instance.RemoveBoid(this);
+        //Destroy(this.gameObject);
     }
 }
