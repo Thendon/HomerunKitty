@@ -19,4 +19,10 @@ public class Tile : MonoBehaviour
             rb.useGravity = true;
         }
     }
+
+    void Update()
+    {
+        if (transform.position.y <= -100f)
+            Destroy(this.gameObject);
+    }
 }

@@ -13,9 +13,17 @@ public class TileSpawner : MonoBehaviour
     [SerializeField]
     protected float m_TileSize;
 
+    [SerializeField]
+    protected float m_MinTime;
+
+    [SerializeField]
+    protected float m_MaxTime;
+
     // Start is called before the first frame update
     void Start()
     {
+        float maxDistance = new Vector3((m_Size.x-1) / 2 * m_TileSize * (1f / 1.15f), 0, (m_Size.y-1) / 2 * m_TileSize).magnitude;
+
         for (int x = -m_Size.x / 2; x <= m_Size.x/2; x++)
         {
             int howMany = m_Size.y - Mathf.Abs(x);
@@ -32,7 +40,14 @@ public class TileSpawner : MonoBehaviour
 
                 newTile.transform.localScale = Vector3.one * 100f * m_TileSize;
 
-                newTile.GetComponent<Tile>().Drop(60f/position.magnitude);
+                float timeToDrop = Mathf.Lerp(m_MaxTime, m_MinTime, position.magnitude / maxDistance);
+
+                Tile tile = newTile.GetComponent<Tile>();
+
+                if(!tile)
+                    tile = newTile.AddComponent<Tile>();
+
+                tile.Drop(timeToDrop);
             }
         }
     }
