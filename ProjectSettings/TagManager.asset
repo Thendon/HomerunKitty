@@ -12,9 +12,9 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
-  - 
-  - 
+  - Hittable
+  - Bat
+  - Upgrade
   - 
   - 
   - 
