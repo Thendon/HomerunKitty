@@ -1,5 +1,45 @@
 {
   "dependencies": {
+    "com.dbrizov.naughtyattributes": {
+      "version": "https://github.com/dbrizov/NaughtyAttributes.git#v2.0.7",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "c5140c7dc38427f93a63d8bd6604f90134943fe7"
+    },
+    "com.hairibar.engineextensions": {
+      "version": "https://github.com/hairibar/Hairibar.EngineExtensions.git#v2.3.0",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.dbrizov.naughtyattributes": "2.0.7",
+        "com.hairibar.naughtyextensions": "1.2.0"
+      },
+      "hash": "7fbd7730c05012854c41ba81b7e2866abbefe6a4"
+    },
+    "com.hairibar.naughtyextensions": {
+      "version": "https://github.com/hairibar/Hairibar.NaughtyExtensions.git#v1.3.0",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.dbrizov.naughtyattributes": "2.0.7"
+      },
+      "hash": "d85b75390ba8addf6499dcd582a9c9f42b3add32"
+    },
+    "com.hairibar.ragdoll": {
+      "version": "https://github.com/hairibar/Hairibar.Ragdoll.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.modules.physics": "1.0.0",
+        "com.unity.modules.animation": "1.0.0",
+        "com.unity.modules.imgui": "1.0.0",
+        "com.dbrizov.naughtyattributes": "2.0.7",
+        "com.hairibar.engineextensions": "2.3.0",
+        "com.hairibar.naughtyextensions": "1.3.0"
+      },
+      "hash": "5773bfb6c62db75b5afa0ec79cee2ee116ada5d2"
+    },
     "com.unity.burst": {
       "version": "1.8.12",
       "depth": 1,
@@ -7,6 +47,15 @@
       "dependencies": {
         "com.unity.mathematics": "1.2.1",
         "com.unity.modules.jsonserialize": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.cinemachine": {
+      "version": "2.9.7",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.test-framework": "1.1.31"
       },
       "url": "https://packages.unity.com"
     },
