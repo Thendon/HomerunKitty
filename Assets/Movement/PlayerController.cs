@@ -16,12 +16,17 @@ namespace HomerunKitty
         public float handTargetMaxDistance = 0.5f;
         bool jumpRequested = false;
         public float jumpForce = 10.0f;
+        public float jumpCooldown = 1.0f;
+        public float groundDetection = 0.05f;
+        public LayerMask groundLayerMask;
+
 
         [System.NonSerialized]
         public Vector3 movementInput = Vector3.zero;
         [NonSerialized]
         public Vector3 aimInput = Vector3.zero;
 
+        float nextJump = 0.0f;
         const float inputEpsilon = 0.01f;
 
         Rigidbody rb;
@@ -34,8 +39,19 @@ namespace HomerunKitty
             ConfigureRigidbody();
         }
 
+        public bool IsTouchingGround()
+        {
+            Ray ray = new Ray(transform.position + Vector3.up * 0.01f, -Vector3.up);
+            return Physics.Raycast(ray, out RaycastHit hit, groundDetection, groundLayerMask);
+        }
+
         private void Update()
         {
+            if (nextJump > 0.0f)
+            {
+                nextJump -= Time.deltaTime;
+            }
+
             movementInput = Vector3.zero;
 
             if (Input.GetKey(KeyCode.W)) 
@@ -48,8 +64,11 @@ namespace HomerunKitty
             if (Input.GetKey(KeyCode.A)) 
                 movementInput.x -= 1;
 
-            if (Input.GetKey(KeyCode.Space)) 
+            if (Input.GetKey(KeyCode.Space) && nextJump <= 0.0f && IsTouchingGround())
+            {
                 jumpRequested = true;
+                nextJump = jumpCooldown;
+            }
 
             //when using mouse
             Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);

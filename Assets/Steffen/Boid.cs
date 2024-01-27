@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boid : MonoBehaviour
+public class Boid : MonoBehaviour, IHitable
 {
     public Rigidbody rigidBody;
 
@@ -10,11 +10,8 @@ public class Boid : MonoBehaviour
 
     public bool isHit;
 
-    private void OnCollisionEnter(Collision collision)
+    public void Hit()
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Bat"))
-        {
-            isHit = true;
-        }
+        isHit = true;
     }
 }
