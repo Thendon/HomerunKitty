@@ -13,6 +13,7 @@ public class BaseballBatPhysics : MonoBehaviour
     public PlayerPointsManager player;
     public float hitCooldown = 1.0f;
     public GameObject hitEffectPrefab;
+    public Quaternion velocityOffset;
 
     Vector3 prevPos;
     Vector3 velocity;
@@ -52,7 +53,7 @@ public class BaseballBatPhysics : MonoBehaviour
             }
         }
 
-        Vector3 force = highestContact * velocity * (initialWeight + bonusWeight);
+        Vector3 force = highestContact * (initialWeight + bonusWeight) * (transform.rotation * velocityOffset * velocity);
 
         IHitable hitable = collision.rigidbody.gameObject.GetComponent<IHitable>();
         if (hitable != null)
@@ -62,6 +63,7 @@ public class BaseballBatPhysics : MonoBehaviour
                 hitableNextHitTime.Add(hash, Time.time + hitCooldown);
             else if (Time.time < hitableNextHitTime[hash])
                 return;
+            hitableNextHitTime[hash] = Time.time + hitCooldown;
 
             hitable.Hit(player);
 
@@ -79,6 +81,17 @@ public class BaseballBatPhysics : MonoBehaviour
         //Debug.Log($"height: {highestContact} * velocity: {velocity.magnitude} * weight {initialWeight} + bonus {bonusWeight} = {force.magnitude}");
         collision.rigidbody.AddForce(force);
         player.HitScore(hitPos, force.magnitude);
+
+        lastHitPos = hitPos;
+        lastHitForce = force;
+    }
+
+    Vector3 lastHitPos;
+    Vector3 lastHitForce;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(lastHitPos, lastHitPos + lastHitForce);
     }
 
     public void AddUpgrade(float bonusSize, float bonusWeight, float bonusSpeed)
