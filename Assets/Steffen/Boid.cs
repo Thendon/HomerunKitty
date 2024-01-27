@@ -26,12 +26,6 @@ public class Boid : MonoBehaviour, IHitable
 
     public void KillMouse()
     {
-        if(isHit && player != null)
-        {
-            player.AddPoints(1 /* + distance from hit*/);
-        }
-
         BoidController.instance.RemoveBoid(this);
-        //Destroy(this.gameObject);
     }
 }

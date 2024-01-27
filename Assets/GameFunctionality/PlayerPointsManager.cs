@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerPointsManager : MonoBehaviour
@@ -15,6 +16,7 @@ public class PlayerPointsManager : MonoBehaviour
     public bool dead = false;
     public GameObject endScreen;
     public GameObject scorePrefab;
+    public TMP_Text scoreText;
 
     void Start()
     {
@@ -27,7 +29,7 @@ public class PlayerPointsManager : MonoBehaviour
         {
             BuyUpgrade();
         }
-        if (transform.position.y < 10f && dead == false)
+        if (transform.position.y < -10.0f && dead == false)
         {
             dead = true;
             DeadHandler();
@@ -62,6 +64,8 @@ public class PlayerPointsManager : MonoBehaviour
     public void AddPoints(int amount)
     {
         points += amount;
+
+        scoreText.text = "Score: " + points;
     }
 
 
