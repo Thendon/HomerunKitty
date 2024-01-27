@@ -27,7 +27,7 @@ public class PlayerPointsManager : MonoBehaviour
         {
             BuyUpgrade();
         }
-        if (transform.position.y < 10f && dead == false)
+        if (transform.position.y < -10.0f && dead == false)
         {
             dead = true;
             DeadHandler();
