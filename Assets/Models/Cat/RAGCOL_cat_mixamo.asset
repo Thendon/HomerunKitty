@@ -35,4 +35,36 @@ MonoBehaviour:
       name: mixamorig:LeftUpLeg
     boneB:
       name: mixamorig:RightUpLeg
+  - boneA:
+      name: mixamorig:LeftArm
+    boneB:
+      name: mixamorig:Spine2
+  - boneA:
+      name: mixamorig:RightArm
+    boneB:
+      name: mixamorig:Spine2
+  - boneA:
+      name: mixamorig:LeftArm
+    boneB:
+      name: mixamorig:Spine1
+  - boneA:
+      name: mixamorig:RightArm
+    boneB:
+      name: mixamorig:Spine1
+  - boneA:
+      name: mixamorig:LeftForeArm
+    boneB:
+      name: mixamorig:Spine
+  - boneA:
+      name: mixamorig:RightForeArm
+    boneB:
+      name: mixamorig:Spine
+  - boneA:
+      name: mixamorig:LeftForeArm
+    boneB:
+      name: mixamorig:Hips
+  - boneA:
+      name: mixamorig:RightForeArm
+    boneB:
+      name: mixamorig:Hips
   disabled: []
