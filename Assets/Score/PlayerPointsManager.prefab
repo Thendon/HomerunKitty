@@ -1,0 +1,176 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4061692704758338073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7589483822096764010}
+  - component: {fileID: 1227455816766988717}
+  - component: {fileID: 3716319109476035988}
+  - component: {fileID: 6351424354997389740}
+  m_Layer: 0
+  m_Name: PlayerPointsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7589483822096764010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4061692704758338073}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.78743166, y: 1.427217, z: 0.3412354}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1227455816766988717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4061692704758338073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c86a3c73f55b44da4c074fbe21d91b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgrades: []
+  points: 0
+  bonusWeight: 0
+  bonusSpeed: 0
+  bonusSize: 0
+  bat: {fileID: 0}
+  upgradeLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  player: TheLegend27
+  dead: 0
+  endScreen: {fileID: 6663856778371844503, guid: 53a5f7f7eac7a234381cb5bd40be1b5b, type: 3}
+  scorePrefab: {fileID: 4621094491168317090, guid: 5ad2b4c022a7a494295e31a5afaf0224, type: 3}
+  scoreText: {fileID: 0}
+  highScoreText: {fileID: 0}
+  playerid: 0
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.004716981
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.14135371
+      value: 0.49336272
+      inSlope: 0.007972381
+      outSlope: 0.007972381
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.5966387
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.291962
+      value: -0.49977198
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.49918175
+      value: 0.21944171
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.6496527
+      value: -0.24332768
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.80513936
+      value: 0.122913115
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.895422
+      value: -0.14396003
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1.0057673
+      value: 0.0008328436
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &3716319109476035988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4061692704758338073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7a1ea74706fcc4caaa95edd1b83151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlSchemeOverride: 
+  move: {x: 0, y: 0}
+  aim: {x: 0, y: 0}
+  mouseAim: 0
+  jump: 0
+--- !u!114 &6351424354997389740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4061692704758338073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7a1ea74706fcc4caaa95edd1b83151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlSchemeOverride: 
+  move: {x: 0, y: 0}
+  aim: {x: 0, y: 0}
+  mouseAim: 0
+  jump: 0

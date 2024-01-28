@@ -10,10 +10,12 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
     public DefaultInput input;
 
     public Vector3 spawnPos = new Vector3(0, 10f, 0);
-    public GameObject playerPrefab;
+    //public GameObject playerPrefab;
     List<InputDevice> inputDevices = new List<InputDevice>();
     Dictionary<InputDevice, InputManagerSystem> devicePlayerMap = new Dictionary<InputDevice, InputManagerSystem>();
     public Cinemachine.CinemachineTargetGroup targetGroup;
+    public List<PlayerPointsManager> players = new List<PlayerPointsManager>();
+    public List<GameObject> playerPrefabs = new List<GameObject>();
 
     protected override void Awake()
     {
@@ -32,7 +34,7 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
 
     private void Start()
     {
-        SpawnPlayers();
+        //SpawnPlayers();
     }
 
 
@@ -48,12 +50,19 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
 
     public void SpawnPlayer()
     {
-        GameObject playerInstance = Instantiate(playerPrefab);
+        targetGroup = FindFirstObjectByType<Cinemachine.CinemachineTargetGroup>();
+        GameObject playerInstance = Instantiate(playerPrefabs[Random.Range(0, playerPrefabs.Count)]);
         playerInstance.transform.position = spawnPos;
         playerInstance.GetComponentInChildren<PlayerController>().GroundPlayer();
         InputManagerSystem playerInput = playerInstance.GetComponentInChildren<InputManagerSystem>();
         playerInput.Init(input);
         targetGroup.AddMember(playerInstance.transform, 1, 5);
+        var points = playerInstance.GetComponentInChildren<PlayerPointsManager>();
+        players.Add(points);
+
+        ScoreText[] scores = FindObjectsByType<ScoreText>(FindObjectsSortMode.InstanceID);
+        points.scoreText = scores[0];
+        points.playerid = 0;
 
         foreach (var device in inputDevices)
         {
@@ -64,19 +73,26 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
 
     public void SpawnPlayers()
     {
+        targetGroup = FindFirstObjectByType<Cinemachine.CinemachineTargetGroup>();
+        ScoreText[] scores = FindObjectsByType<ScoreText>(FindObjectsSortMode.InstanceID);
+
+        int i = 0;
         foreach (var device in inputDevices)
         {
             if (device.name == "Mouse")
                 continue;
-
             Debug.Log("Spawn player for device " + device);
-            GameObject playerInstance = Instantiate(playerPrefab);
+            GameObject playerInstance = Instantiate(playerPrefabs[Random.Range(0, playerPrefabs.Count)]);
             playerInstance.transform.position = spawnPos;
             playerInstance.GetComponentInChildren<PlayerController>().GroundPlayer();
             InputManagerSystem playerInput = playerInstance.GetComponentInChildren<InputManagerSystem>();
             devicePlayerMap.Add(device, playerInput);
             playerInput.Init(input);
             playerInput.AddDevice(device);
+            var points = playerInstance.GetComponentInChildren<PlayerPointsManager>();
+            points.scoreText = scores[i];
+            points.playerid = i;
+            players.Add(points);
 
             if (device.name == "Keyboard")
             {
@@ -90,7 +106,14 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
                 }
             }
             targetGroup.AddMember(playerInstance.transform, 1, 5);
+            i++;
         }
+    }
+
+    public void Clear()
+    {
+        players.Clear();
+        devicePlayerMap.Clear();
     }
 
     public void DespawnPlayer(GameObject playerInstance)

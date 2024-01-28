@@ -8,7 +8,7 @@ public class WorldManager : MonoBehaviour
     public TileSpawner tileSpawner;
     public BoidController mouseController;
 
-    void Start()
+    public void Init()
     {
         tileSpawner.Spawn();
         mouseController.InitialSpawn();

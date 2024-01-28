@@ -51,6 +51,7 @@ namespace HomerunKitty
             else
             {
                 Assert.IsTrue(false);
+                Debug.Break();
             }
         }
 

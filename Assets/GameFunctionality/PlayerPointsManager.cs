@@ -18,9 +18,10 @@ public class PlayerPointsManager : MonoBehaviour
     public bool dead = false;
     public GameObject endScreen;
     public GameObject scorePrefab;
-    public TMP_Text scoreText;
+    public ScoreText scoreText;
     public TMP_Text highScoreText;
     private Vector3 startScale;
+    public int playerid = 0;
 
     public AnimationCurve curve;
 
@@ -85,7 +86,7 @@ public class PlayerPointsManager : MonoBehaviour
     {
         points += amount;
 
-        scoreText.text = "Score: " + points;
+        scoreText.SetScore(playerid, amount);//"Score: " + points;
 
         if (scoringRoutine != null)
         {
