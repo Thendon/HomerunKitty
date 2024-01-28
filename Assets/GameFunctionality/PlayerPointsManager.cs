@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class PlayerPointsManager : MonoBehaviour
 {
     public List<Upgrade> upgrades;
     public int points = 0;
+    private int highscore;
     public float bonusWeight;
     public float bonusSpeed;
     public float bonusSize;
@@ -17,10 +19,27 @@ public class PlayerPointsManager : MonoBehaviour
     public GameObject endScreen;
     public GameObject scorePrefab;
     public TMP_Text scoreText;
+    public TMP_Text highScoreText;
+    private Vector3 startScale;
+
+    public AnimationCurve curve;
 
     void Start()
     {
         upgrades = new List<Upgrade>();
+
+        if (PlayerPrefs.HasKey("Highscore"))
+        {
+            highscore = PlayerPrefs.GetInt("Highscore");
+
+            highScoreText.text = "Highscore: " + highscore;
+        }
+        else
+        {
+            highscore = 0;
+        }
+
+        startScale = scoreText.transform.localScale;
     }
 
     void Update()
@@ -66,6 +85,43 @@ public class PlayerPointsManager : MonoBehaviour
         points += amount;
 
         scoreText.text = "Score: " + points;
+
+        if (scoringRoutine != null)
+        {
+            StopCoroutine(scoringRoutine);
+        }
+
+        scoringRoutine = StartCoroutine(ScoringAnim());
+
+        if(points > highscore)
+        {
+            highscore = points;
+
+            PlayerPrefs.SetInt("Highscore", highscore);
+
+            highScoreText.text = "Highscore: " + highscore;
+        }
+    }
+
+    private Coroutine scoringRoutine;
+
+    private IEnumerator ScoringAnim()
+    {
+        scoreText.transform.localScale = startScale;
+
+        float progress = 0.0f;
+        float speed = 1.0f;
+
+        while (progress < curve.keys[curve.keys.Length - 1].time)
+        {
+            progress += Time.deltaTime * speed;
+
+            scoreText.transform.localScale = startScale + (curve.Evaluate(progress) + 0.5f) * Vector3.one;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        scoringRoutine = null;
     }
 
 
