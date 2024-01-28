@@ -44,10 +44,10 @@ public class PlayerPointsManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            BuyUpgrade();
-        }
+        //if(Input.GetKeyDown(KeyCode.E))
+        //{
+        //    BuyUpgrade();
+        //}
         if (transform.position.y < -10.0f && dead == false)
         {
             dead = true;
@@ -55,14 +55,15 @@ public class PlayerPointsManager : MonoBehaviour
         }
     }
 
-    public void BuyUpgrade()
+    public void OnTriggerUpgradeEnter(Collider other)
     {
         Debug.Log("UpgradeBuy");
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 2f, upgradeLayer))
-        {
+        //RaycastHit hit;
+        //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 2f, upgradeLayer))
+        //if(other.gameObject.layer == upgradeLayer)
+        //{
             Debug.Log("Raycast true");
-            Upgrade upgrade = hit.transform.GetComponent<Upgrade>();
+            Upgrade upgrade = other.transform.GetComponent<Upgrade>();
 
             if (!upgrades.Contains(upgrade) && points >= upgrade.cost)
             {
@@ -75,9 +76,9 @@ public class PlayerPointsManager : MonoBehaviour
                 bat.AddUpgrade(bonusSize, bonusWeight,bonusSpeed);
 
             }
-            hit.transform.gameObject.SetActive(false);
-        }
-        Debug.Log(hit);
+            other.transform.gameObject.SetActive(false);
+        //}
+        //Debug.Log(collision);
 
     }
 

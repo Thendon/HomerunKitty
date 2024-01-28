@@ -15,4 +15,17 @@ public class Upgrade : MonoBehaviour
         GetComponentInChildren<TMPro.TextMeshPro>().text = "Size: +" + bonusSize + "\nWeight: +" + bonusWeight + "\nCost: -" + cost; ;
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == 6)
+        {
+            if (other.GetComponentInChildren<PlayerPointsManager>() != null)
+            {
+                PlayerPointsManager pointsmanager = other.GetComponentInChildren<PlayerPointsManager>();
+                pointsmanager.OnTriggerUpgradeEnter(this.GetComponent<SphereCollider>());
+
+            }
+        }
+    }
+
 }
