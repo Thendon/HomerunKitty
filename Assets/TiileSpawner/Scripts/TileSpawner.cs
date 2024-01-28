@@ -8,6 +8,9 @@ public class TileSpawner : MonoBehaviour
     protected List<GameObject> m_ToSpawn;
 
     [SerializeField]
+    protected GameObject m_SpawnTile;
+
+    [SerializeField]
     protected Vector2Int m_Size;
 
     [SerializeField]
@@ -22,9 +25,14 @@ public class TileSpawner : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float boidsSpawnerChance = 0.1f;
 
+    [Range(0.0f, 1.0f)]
+    private float noTileChance = 0.2f;
+
     public void Spawn()
     {
         float maxDistance = new Vector3((m_Size.x-1) / 2 * m_TileSize * (1f / 1.15f), 0, (m_Size.y-1) / 2 * m_TileSize).magnitude;
+
+        //Random.seed = 
 
         for (int x = -m_Size.x / 2; x <= m_Size.x/2; x++)
         {
@@ -32,15 +40,29 @@ public class TileSpawner : MonoBehaviour
 
             for (int z = 0; z < howMany; z++)
             {
+                bool isCenterTile = x == 0 && z == (howMany - 1) / 2;
+
+                if (!isCenterTile && Random.Range(0.0f, 1.0f) < noTileChance)
+                {
+                    continue;
+                }
+
                 float zOffset = Mathf.Abs((x % 2f) / 2f);
 
                 Vector3 position = new Vector3(x * m_TileSize * (1f/1.15f), 0.0f, (z - (howMany - 1) / 2 - zOffset) * m_TileSize);
-
-                int toSpawn = Random.Range(0, m_ToSpawn.Count);
-
                 Quaternion rot = Quaternion.Euler(0, 60 * Random.Range(0, 6), 0);
 
-                GameObject newTileGameObject = Instantiate(m_ToSpawn[toSpawn], position, rot, transform);
+                GameObject newTileGameObject = null;
+
+                if (isCenterTile)
+                {
+                    newTileGameObject = Instantiate(m_SpawnTile, position, rot, transform);
+                }
+                else
+                {
+                    int toSpawn = Random.Range(0, m_ToSpawn.Count);
+                    newTileGameObject = Instantiate(m_ToSpawn[toSpawn], position, rot, transform);
+                }
 
                 newTileGameObject.transform.localScale = Vector3.one * 100f * m_TileSize;
 
@@ -48,12 +70,14 @@ public class TileSpawner : MonoBehaviour
 
                 Tile tile = newTileGameObject.GetComponent<Tile>();
 
-                if(!tile)
+                if (!tile)
+                {
                     tile = newTileGameObject.AddComponent<Tile>();
+                }
 
                 tile.Drop(timeToDrop);
 
-                if(Random.Range(0.0f, 1.0f) < boidsSpawnerChance)
+                if(!isCenterTile && Random.Range(0.0f, 1.0f) < boidsSpawnerChance)
                 {
                     newTileGameObject.AddComponent<BoidSpawner>();
                 }
