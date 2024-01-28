@@ -15,6 +15,7 @@ public class BaseballBatPhysics : MonoBehaviour
     public GameObject hitEffectPrefab;
     public Quaternion velocityOffset;
     public float velocityLerpFactor = 1.0f;
+    public float weightingFactor = 0.2f;
 
     Vector3 prevPos;
     Vector3 velocity;
@@ -45,7 +46,7 @@ public class BaseballBatPhysics : MonoBehaviour
 
         ContactPoint[] contacts = new ContactPoint[collision.contactCount];
         int count = collision.GetContacts(contacts);
-        float highestContact = 0.0f;
+        float highestContact = 0.3f;
         Vector3 hitPos = collision.gameObject.transform.position + Vector3.up * 1.0f;
         for (int i = 0; i < count; i++)
         {
@@ -57,7 +58,7 @@ public class BaseballBatPhysics : MonoBehaviour
             }
         }
 
-        Vector3 force = highestContact * (initialWeight + bonusWeight) * (velocity + Vector3.up * velocity.magnitude);
+        Vector3 force = weightingFactor*highestContact * (initialWeight + bonusWeight) * (velocity + Vector3.up * velocity.magnitude);
 
         IHitable hitable = collision.rigidbody.gameObject.GetComponent<IHitable>();
         if (hitable != null)
