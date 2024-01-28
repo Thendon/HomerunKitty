@@ -12,6 +12,7 @@ public class Boid : MonoBehaviour, IHitable
 
     public PlayerPointsManager player;
     public bool isHit;
+    public float hitForce;
 
     private float respawnTimer;
 
@@ -32,14 +33,15 @@ public class Boid : MonoBehaviour, IHitable
 
     public void Hit(PlayerPointsManager player, Vector3 force)
     {
-        Debug.Log("HIT");
+        hitForce = force.magnitude;
 
-        if(isHit)
+        if (isHit)
         {
             return;
         }
 
         isHit = true;
+        
         respawnTimer = 0.0f;
 
         foreach (Transform child in rigidBody.transform)
