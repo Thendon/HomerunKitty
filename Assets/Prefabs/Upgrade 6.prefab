@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Test
   bonusSpeed: 0
-  bonusWeight: -2000
+  bonusWeight: -1000
   bonusSize: -2
   cost: -16
 --- !u!1 &8157677483801734021

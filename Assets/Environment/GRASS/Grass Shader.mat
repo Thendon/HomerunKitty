@@ -125,14 +125,14 @@ Material:
     - _Surface: 0
     - _WindMovement: 1.35
     - _Wind_Density: 0.1
-    - _Wind_Strength: 1
+    - _Wind_Strength: 0.2
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Grass_Color: {r: 0.051997136, g: 0.4113207, b: 0.059047814, a: 0}
+    - _Grass_Color: {r: 0.30989534, g: 0.4117647, b: 0.05098039, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _Wind_Movement: {r: 1, g: 1, b: 0, a: 0}
+    - _Wind_Movement: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
