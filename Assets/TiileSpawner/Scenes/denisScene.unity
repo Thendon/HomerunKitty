@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -515,12 +515,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ToSpawn:
   - {fileID: 1278276451620929080, guid: e7aed14dc0a08ae49a518dc75f5e6fc4, type: 3}
+  - {fileID: 1278276451620929080, guid: afa0bd64742033e4c8ed598fb8f0bc5d, type: 3}
+  - {fileID: 1278276451620929080, guid: 329cc4756ddc65b4f8021a378b6d3f4b, type: 3}
+  - {fileID: 1278276451620929080, guid: b044f2c4beaa3a94689ba814e1b924e4, type: 3}
+  - {fileID: 1278276451620929080, guid: 3ea7bef29e5cfe248ad9574933bb1849, type: 3}
+  - {fileID: 1278276451620929080, guid: ba8f7c5c06d1ce043abd7eccd9fff460, type: 3}
+  - {fileID: 1651041628217114820, guid: 65c598a1d77743d49b23dd85b65f1caf, type: 3}
+  - {fileID: 1651041628217114820, guid: e1a61f02143c89e4e8137f10ce9ac856, type: 3}
+  - {fileID: 1651041628217114820, guid: 427e9a0cb52e4ca4aad41b25da7c4c2c, type: 3}
+  - {fileID: 1651041628217114820, guid: acf214ad25cbd844282a9c05ab6b11d6, type: 3}
+  - {fileID: 1651041628217114820, guid: 311e514598534a140b89bf52e57055e6, type: 3}
+  - {fileID: 1651041628217114820, guid: 781201a97a2248346a741d33faae5aa3, type: 3}
+  - {fileID: 1651041628217114820, guid: 665a11fecb3f6e04895b7091030dafa7, type: 3}
+  - {fileID: 1651041628217114820, guid: b9e4d073114c0714e854a0527e12e8bb, type: 3}
+  - {fileID: 1651041628217114820, guid: 598b123ec5e98864fb29a80499be7b73, type: 3}
+  - {fileID: 1651041628217114820, guid: 9adf5dbdcb2c59a4cbb53c11e7e2f1c7, type: 3}
   - {fileID: 1651041628217114820, guid: 90e8c22117d35ba4495a3f96ca174379, type: 3}
   - {fileID: 1834921306239466113, guid: d75e4691bc4c4834f806b66ed303ca31, type: 3}
+  - {fileID: 1834921306239466113, guid: fd7d6a5d2d3c6eb4ea7b96d80e799c64, type: 3}
+  - {fileID: 1834921306239466113, guid: 2d90b441c1373f5488bc58413c7e0328, type: 3}
+  - {fileID: 1834921306239466113, guid: 8521536d6234ce24daa6dbf9282e9d3c, type: 3}
+  - {fileID: 1278276451620929080, guid: 1cadf5e176ff4d34db714768eac74575, type: 3}
+  - {fileID: 1278276451620929080, guid: 1cadf5e176ff4d34db714768eac74575, type: 3}
+  - {fileID: 1278276451620929080, guid: 1cadf5e176ff4d34db714768eac74575, type: 3}
+  - {fileID: 1278276451620929080, guid: 1cadf5e176ff4d34db714768eac74575, type: 3}
+  - {fileID: 1278276451620929080, guid: 1cadf5e176ff4d34db714768eac74575, type: 3}
+  - {fileID: 1278276451620929080, guid: 1cadf5e176ff4d34db714768eac74575, type: 3}
+  - {fileID: 1278276451620929080, guid: 1cadf5e176ff4d34db714768eac74575, type: 3}
+  - {fileID: 1278276451620929080, guid: 1cadf5e176ff4d34db714768eac74575, type: 3}
+  - {fileID: 1278276451620929080, guid: 1cadf5e176ff4d34db714768eac74575, type: 3}
+  m_SpawnTile: {fileID: 0}
   m_Size: {x: 17, y: 17}
   m_TileSize: 5
   m_MinTime: 10
   m_MaxTime: 60
+  boidsSpawnerChance: 0.1
 --- !u!4 &1061740316
 Transform:
   m_ObjectHideFlags: 0
