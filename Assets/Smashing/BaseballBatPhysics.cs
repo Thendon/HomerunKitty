@@ -81,12 +81,12 @@ public class BaseballBatPhysics : MonoBehaviour
             hitEffectPrefab.GetComponent<VisualEffect>().SetVector3("input-hit-velocity", hitVelocity);
             hitEffectPrefab.GetComponent<VisualEffect>().SetVector3("spawnPosition", collision.contacts[0].point);
             hitEffectPrefab.GetComponent<VisualEffect>().Play();
+
+            player.HitScore(hitPos, force.magnitude);
         }
         
         //Debug.Log($"height: {highestContact} * velocity: {velocity.magnitude} * weight {initialWeight} + bonus {bonusWeight} = {force.magnitude}");
         collision.rigidbody.AddForce(force, ForceMode.VelocityChange);
-
-        player.HitScore(hitPos, force.magnitude);
     }
 
     Vector3 lastHitPos;
