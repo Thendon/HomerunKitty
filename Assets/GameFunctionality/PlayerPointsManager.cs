@@ -71,10 +71,11 @@ public class PlayerPointsManager : MonoBehaviour
                 bonusSize += upgrade.bonusSize;
                 bonusWeight += upgrade.bonusWeight;
                 bonusSpeed += upgrade.bonusSpeed;
-                points -= upgrade.cost;
+                AddPoints(-upgrade.cost);
                 bat.AddUpgrade(bonusSize, bonusWeight,bonusSpeed);
 
             }
+            hit.transform.gameObject.SetActive(false);
         }
         Debug.Log(hit);
 
