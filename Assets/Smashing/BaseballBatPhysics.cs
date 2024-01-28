@@ -14,6 +14,7 @@ public class BaseballBatPhysics : MonoBehaviour
     public float hitCooldown = 1.0f;
     public GameObject hitEffectPrefab;
     public Quaternion velocityOffset;
+    public float velocityLerpFactor = 1.0f;
 
     Vector3 prevPos;
     Vector3 velocity;
@@ -28,8 +29,11 @@ public class BaseballBatPhysics : MonoBehaviour
 
     private void FixedUpdate()
     {
-        velocity = rb.position - prevPos;
+        velocity = Vector3.Lerp(velocity, rb.position - prevPos, velocityLerpFactor * Time.fixedDeltaTime);
         prevPos = rb.position;
+
+        lastHitPos = prevPos;
+        lastHitForce = velocity;
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -53,7 +57,7 @@ public class BaseballBatPhysics : MonoBehaviour
             }
         }
 
-        Vector3 force = highestContact * (initialWeight + bonusWeight) * (transform.rotation * velocityOffset * velocity);
+        Vector3 force = highestContact * (initialWeight + bonusWeight) * (velocity + Vector3.up * velocity.magnitude);
 
         IHitable hitable = collision.rigidbody.gameObject.GetComponent<IHitable>();
         if (hitable != null)
@@ -65,7 +69,7 @@ public class BaseballBatPhysics : MonoBehaviour
                 return;
             hitableNextHitTime[hash] = Time.time + hitCooldown;
 
-            hitable.Hit(player);
+            hitable.Hit(player, force);
 
             //VisualEffect hitEffect = Instantiate(hitEffectPrefab, collision.contacts[0].point, Quaternion.identity).;
 
@@ -79,11 +83,9 @@ public class BaseballBatPhysics : MonoBehaviour
         }
         
         //Debug.Log($"height: {highestContact} * velocity: {velocity.magnitude} * weight {initialWeight} + bonus {bonusWeight} = {force.magnitude}");
-        collision.rigidbody.AddForce(force);
-        player.HitScore(hitPos, force.magnitude);
+        collision.rigidbody.AddForce(force, ForceMode.VelocityChange);
 
-        lastHitPos = hitPos;
-        lastHitForce = force;
+        player.HitScore(hitPos, force.magnitude);
     }
 
     Vector3 lastHitPos;
@@ -91,7 +93,26 @@ public class BaseballBatPhysics : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(lastHitPos, lastHitPos + lastHitForce);
+        Vector3 force = (initialWeight + bonusWeight) * (lastHitForce + Vector3.up * lastHitForce.magnitude);
+        Vector3 force2 = (initialWeight + bonusWeight) * (lastHitForce);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(lastHitPos, lastHitPos + force);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(lastHitPos, lastHitPos + force2);
+    }
+
+    Vector3 RotateTowardsUp(Vector3 start, float angle)
+    {
+        // if you know start will always be normalized, can skip this step
+        start.Normalize();
+
+        Vector3 axis = Vector3.Cross(start, Vector3.up);
+
+        // handle case where start is colinear with up
+        if (axis == Vector3.zero) axis = Vector3.right;
+
+        return Quaternion.AngleAxis(angle, axis) * start;
     }
 
     public void AddUpgrade(float bonusSize, float bonusWeight, float bonusSpeed)

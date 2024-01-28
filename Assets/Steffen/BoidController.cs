@@ -25,6 +25,8 @@ public class BoidController : SingletonScene<BoidController>
 
     // --
 
+    public int maxBoidsCount = 200;
+
     public float maxSteerForce = 50;
 
     public float collisionRadius = 1;
@@ -82,8 +84,6 @@ public class BoidController : SingletonScene<BoidController>
         Array.Resize(ref boidsData, boidsData.Length + 1);
 
         boids.Add(boid);
-
-        boid.transform.SetParent(boidsParent);
     }
 
     public void RemoveBoid(Boid boid)
@@ -114,7 +114,7 @@ public class BoidController : SingletonScene<BoidController>
 
         for (int i = 0; i < initialBoidAmount; i++)
         {
-            Boid boidInstance = Instantiate(boidPrefab).GetComponentInChildren<Boid>();
+            Boid boidInstance = Instantiate(boidPrefab, boidsParent).GetComponentInChildren<Boid>();
 
             BoidData boidData = new BoidData();
 
@@ -140,8 +140,6 @@ public class BoidController : SingletonScene<BoidController>
 
             boids.Add(boidInstance);
             boidsData[i] = boidData;
-
-            boidInstance.transform.SetParent(boidsParent);
         }
     }
 
@@ -239,81 +237,74 @@ public class BoidController : SingletonScene<BoidController>
             }
 
             // Edge avoidance
-            //if (!Physics.Raycast(boid.transform.position + boid.transform.forward * edgeDetectionDistance + Vector3.up * 1000.0f, Vector3.down, out _, float.MaxValue, LayerMask.NameToLayer("Ground")))
-            //{
-            //    Vector3 freeDirection = Vector3.zero;
+            if (!Physics.Raycast(boid.transform.position + boid.transform.forward * edgeDetectionDistance + Vector3.up * 1000.0f, Vector3.down, out _, float.MaxValue))
+            {
+                Vector3 freeDirection = Vector3.zero;
 
-            //    int numDirections = 50;
-            //    Vector3[] directions = new Vector3[numDirections];
+                int numDirections = 50;
+                Vector3[] directions = new Vector3[numDirections];
 
-            //    float goldenRatio = (1 + Mathf.Sqrt(5)) / 2;
-            //    float angleIncrement = Mathf.PI * 2 * goldenRatio;
+                float goldenRatio = (1 + Mathf.Sqrt(5)) / 2;
+                float angleIncrement = Mathf.PI * 2 * goldenRatio;
 
-            //    for (int i = 0; i < numDirections; i++)
-            //    {
-            //        float t = (float)i / numDirections;
-            //        float inclination = Mathf.Acos(1 - 2 * t);
-            //        float azimuth = angleIncrement * i;
+                for (int i = 0; i < numDirections; i++)
+                {
+                    float t = (float)i / numDirections;
+                    float inclination = Mathf.Acos(1 - 2 * t);
+                    float azimuth = angleIncrement * i;
 
-            //        float x = Mathf.Sin(inclination) * Mathf.Cos(azimuth);
-            //        float y = Mathf.Sin(inclination) * Mathf.Sin(azimuth);
-            //        float z = Mathf.Cos(inclination);
-            //        directions[i] = new Vector3(x, y, z);
+                    float x = Mathf.Sin(inclination) * Mathf.Cos(azimuth);
+                    float y = Mathf.Sin(inclination) * Mathf.Sin(azimuth);
+                    float z = Mathf.Cos(inclination);
+                    directions[i] = new Vector3(x, y, z);
 
-            //        Vector3 worldDir = boid.transform.TransformDirection(directions[i]);
-            //        if (Physics.Raycast(boid.transform.position + worldDir * edgeDetectionDistance + Vector3.up * 1000.0f, Vector3.down, out _, float.MaxValue, LayerMask.NameToLayer("Ground")))
-            //        {
-            //            freeDirection = worldDir;
+                    Vector3 worldDir = boid.transform.TransformDirection(directions[i]);
+                    if (Physics.Raycast(boid.transform.position + worldDir * edgeDetectionDistance + Vector3.up * 1000.0f, Vector3.down, out _, float.MaxValue))
+                    {
+                        freeDirection = worldDir;
 
-            //            break;
-            //        }
-            //    }
+                        break;
+                    }
+                }
 
-            //    Vector3 edgeAvoidForce = SteerTowards(freeDirection, boid.rigidBody.velocity) * edgeAvoidanceWeight;
-            //    acceleration += edgeAvoidForce;
-            //}
+                Vector3 edgeAvoidForce = SteerTowards(freeDirection, boid.rigidBody.velocity) * edgeAvoidanceWeight;
+                acceleration += edgeAvoidForce;
+            }
 
             acceleration.y = 0.0f;
 
             Vector3 velocity = boid.rigidBody.velocity;
-            //float temp = -velocity.y;
-            //velocity.y = velocity.z;
-            //velocity.z = temp;
             velocity += acceleration * Time.deltaTime;
             float speed = velocity.magnitude;
             Vector3 dir = velocity / speed;
             speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
-            //temp = -dir.y;
-            //dir.y = dir.z;
-            //dir.z = temp;
             boid.rigidBody.velocity = dir * speed;
             
             dir.y = 0.0f;
-            //if(boid.rigidBody.velocity.magnitude > 0.4f)
-                boid.rigidBody.transform.LookAt(boid.rigidBody.transform.position + dir, Vector3.up);
 
-            //if (boid.transform.position.x < spawnArea.bounds.min.x)
-            //{
-            //    //boid.transform.Translate(Vector3.right * spawnArea.bounds.extents.x);
-            //    boid.rigidBody.MovePosition(Vector3.right * spawnArea.bounds.extents.x);
-            //}
-            //if (boid.transform.position.z < spawnArea.bounds.min.z)
-            //{
-            //    boid.rigidBody.MovePosition(Vector3.forward * spawnArea.bounds.extents.z);
-            //}
-
-            //if (boid.transform.position.x > spawnArea.bounds.max.x)
-            //{
-            //    boid.rigidBody.MovePosition(-Vector3.right * spawnArea.bounds.extents.x);
-            //}
-            //if (boid.transform.position.z > spawnArea.bounds.max.z)
-            //{
-            //    boid.rigidBody.MovePosition(-Vector3.forward * spawnArea.bounds.extents.z);
-            //}
-
+            boid.rigidBody.transform.LookAt(boid.rigidBody.transform.position + dir, Vector3.up);
         }
 
         boidBuffer.Release();
+    }
+
+    private void OnDrawGizmos()
+    {
+        foreach (Boid boid in boids)
+        {
+            // Perception
+            Gizmos.color = Color.white;
+            Gizmos.DrawSphere(boid.transform.position, perceptionRange);
+
+            // Avoid 
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(boid.transform.position, boid.transform.position + boid.transform.forward * collisionAvoidanceDistance);
+            Gizmos.DrawSphere(boid.transform.position + boid.transform.forward * collisionAvoidanceDistance, collisionRadius);
+
+            // Edge
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(boid.transform.position + Vector3.up, boid.transform.position + Vector3.up + boid.transform.forward * edgeDetectionDistance);
+        }
     }
 
     Vector3 SteerTowards(Vector3 vector, Vector3 velocity)

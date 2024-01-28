@@ -23,9 +23,22 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 8075a9933abd3124b87f852a6acaf94b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 8197b214b3afc99468b05f1a770b7985, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 8075a9933abd3124b87f852a6acaf94b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _Smoothness: 0.281
     m_Colors:
     - _BaseColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
     - _Color: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
