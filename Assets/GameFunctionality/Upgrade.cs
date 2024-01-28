@@ -10,4 +10,9 @@ public class Upgrade : MonoBehaviour
     public float bonusSize;
     public int cost;
 
+    public void Start()
+    {
+        GetComponentInChildren<TMPro.TextMeshPro>().text = "Size: +" + bonusSize + "\nWeight: +" + bonusWeight + "\nCost: -" + cost; ;
+    }
+
 }
