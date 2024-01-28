@@ -22,7 +22,6 @@ namespace HomerunKitty
         public LayerMask groundLayerMask;
         public InputManagerSystem input;
         public bool useNewInput => input != null;
-            
 
         [System.NonSerialized]
         public Vector3 movementInput = Vector3.zero;

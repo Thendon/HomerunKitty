@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4773848920066900316}
   - component: {fileID: 4187100327586868379}
   - component: {fileID: 1765509553753825442}
+  - component: {fileID: 8302271371618862234}
   m_Layer: 0
   m_Name: PlayerPointsManager
   m_TagString: Untagged
@@ -151,6 +152,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlSchemeOverride: 
+  move: {x: 0, y: 0}
+  aim: {x: 0, y: 0}
+  jump: 0
+--- !u!114 &8302271371618862234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390867783594811183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7a1ea74706fcc4caaa95edd1b83151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlSchemeOverride: 
+  move: {x: 0, y: 0}
+  aim: {x: 0, y: 0}
+  jump: 0
 --- !u!1 &2164419339077931975
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,7 +1819,7 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 1
-  input: {fileID: 0}
+  input: {fileID: 1765509553753825442}
 --- !u!1 &6717609886822655668 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4857466117399689456, guid: 2998ebed7cd6a3d4fa6ea2554d83bb5e, type: 3}
