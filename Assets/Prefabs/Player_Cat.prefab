@@ -5755,7 +5755,7 @@ MonoBehaviour:
   weaponTargetSpeed: 6
   blendTreeDamping: 0.1
   animator: {fileID: 6348997808482669529}
-  handTarget: {fileID: 0}
+  handTarget: {fileID: 2125314028325221905}
   handTargetHeight: 1.5
   handTargetMaxDistance: 1
   jumpForce: 100
@@ -5764,7 +5764,7 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 1
-  input: {fileID: 0}
+  input: {fileID: 4176820389545557594}
 --- !u!1001 &748732826599822286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5822,6 +5822,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afa1ef6ec73245c4da64d1f171efd044, type: 3}
+--- !u!114 &4176820389545557594 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3716319109476035988, guid: afa1ef6ec73245c4da64d1f171efd044, type: 3}
+  m_PrefabInstance: {fileID: 748732826599822286}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7a1ea74706fcc4caaa95edd1b83151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7149266336329162660 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7589483822096764010, guid: afa1ef6ec73245c4da64d1f171efd044, type: 3}
