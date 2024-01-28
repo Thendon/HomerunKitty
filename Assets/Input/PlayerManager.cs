@@ -37,6 +37,11 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
         //SpawnPlayers();
     }
 
+    public void Reset()
+    {
+        devicePlayerMap.Clear();
+    }
+
 
     protected void OnEnable()
     {

@@ -62,5 +62,17 @@ public class EndScreen : MonoBehaviour
         GameManager.instance.FindNewMenu();
     }
 
+    public void Restart()
+    {
+        PlayerManager.instance.Reset();
 
+        GameManager.instance.LoadLevel();
+    }
+
+    public void BackToMainMenu()
+    {
+        PlayerManager.instance.Reset();
+
+        SceneManager.LoadScene("UIScene");
+    }
 }
