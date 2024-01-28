@@ -2,22 +2,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public partial class InputManagerSystem :  MonoBehaviour, DefaultInput.ICharacterActions
+public partial class InputManagerSystem :  MonoBehaviour
 {
-	DefaultInput input;
+	DefaultInput input => PlayerManager.instance.input;
 
 	public string controlSchemeOverride = null;
 	bool autoScheme => controlSchemeOverride == null;
 	public List<InputDevice> devices = new List<InputDevice>();
 
-	public Vector2 move { private set; get; } = Vector2.zero;
-	public Vector2 aim { private set; get; } = Vector2.zero;
-	public bool mouseAim => currentScheme == input.KeyboardAndMouseScheme;
-	public bool jump { private set; get; } = false;
+	public Vector2 move = Vector2.zero;
+	public Vector2 aim = Vector2.zero;
+	public bool mouseAim = false;
+	public bool jump = false;
 
 	InputControlScheme currentScheme;
 
-	public void Init()
+	public void Init(DefaultInput input)
 	{
 		if (!autoScheme)
 		{
@@ -32,40 +32,12 @@ public partial class InputManagerSystem :  MonoBehaviour, DefaultInput.ICharacte
 		}
 	}
 
-	public void AddDevice(InputDevice device)
+	public void UpdateScheme(InputAction.CallbackContext context)
     {
-		devices.Add(device);
-    }
-
-	protected void Awake()
-	{
-		input = new DefaultInput();
-		input.Character.SetCallbacks(this);
-		Init();
-	}
-
-	protected void OnDestroy()
-	{
-	}
-
-	bool isMyDevice(InputDevice device)
-    {
-		//use all devices
-		if (devices.Count < 0)
-			return true;
-
-		return devices.Contains(device);
-    }
-
-	void DefaultInput.ICharacterActions.OnMove(InputAction.CallbackContext context) //=> move = context.ReadValue<Vector2>();
-	{
-		if (isMyDevice(context.control.device))
-			return;
-
-		var bindingGroups = context.action.GetBindingForControl(context.control).Value.groups;
-		
 		if (autoScheme)
-        {
+		{
+			var bindingGroups = context.action.GetBindingForControl(context.control).Value.groups;
+
 			foreach (var scheme in input.controlSchemes)
 			{
 				if (bindingGroups.Contains(scheme.bindingGroup))
@@ -75,36 +47,19 @@ public partial class InputManagerSystem :  MonoBehaviour, DefaultInput.ICharacte
 				}
 			}
 		}
-
-		move = context.ReadValue<Vector2>();
-	}
-	void DefaultInput.ICharacterActions.OnAim(InputAction.CallbackContext context)
-	{
-		if (isMyDevice(context.control.device))
-			return;
-		aim = context.ReadValue<Vector2>();
-	}
-	void DefaultInput.ICharacterActions.OnLook(InputAction.CallbackContext context)
-	{
-		if (isMyDevice(context.control.device))
-			return;
-		aim = context.ReadValue<Vector2>();
 	}
 
-	public void OnJump(InputAction.CallbackContext context)
+	public void AddDevice(InputDevice device)
+    {
+		Debug.Log("add device " + device);
+		devices.Add(device);
+    }
+
+	protected void Awake()
 	{
-		if (isMyDevice(context.control.device))
-			return;
-		jump = context.ReadValue<bool>();
 	}
 
-	protected void OnEnable()
+	protected void OnDestroy()
 	{
-		input.Enable();
-	}
-
-	protected void OnDisable()
-	{
-		input.Disable();
 	}
 }

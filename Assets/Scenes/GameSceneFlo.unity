@@ -157,6 +157,7 @@ MonoBehaviour:
   seperateWeight: 1
   obstacleAvoidanceWeight: 10
   edgeAvoidanceWeight: 10
+  maxBoidsCount: 200
   maxSteerForce: 5
   collisionRadius: 1
   minSpeed: 4
@@ -1249,6 +1250,7 @@ MonoBehaviour:
   - {fileID: 1651041628217114820, guid: 65c598a1d77743d49b23dd85b65f1caf, type: 3}
   - {fileID: 1834921306239466113, guid: d75e4691bc4c4834f806b66ed303ca31, type: 3}
   - {fileID: 1651041628217114820, guid: 90e8c22117d35ba4495a3f96ca174379, type: 3}
+  m_SpawnTile: {fileID: 0}
   m_Size: {x: 17, y: 17}
   m_TileSize: 5
   m_MinTime: 10
@@ -1269,53 +1271,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1585610731
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1585610732}
-  - component: {fileID: 1585610733}
-  m_Layer: 0
-  m_Name: PlayerInputManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1585610732
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1585610731}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1585610733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1585610731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89b3f1db8c5205040b8ecf8d7f0cfcd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPos: {x: 0, y: 10, z: 0}
-  playerPrefab: {fileID: 6567882495873370283, guid: bf1b3cfabc53e48438d70a71c9d33362, type: 3}
-  targetGroup: {fileID: 756541463}
 --- !u!1 &1658166433
 GameObject:
   m_ObjectHideFlags: 3
@@ -1437,5 +1392,4 @@ SceneRoots:
   - {fileID: 455330642}
   - {fileID: 874757682}
   - {fileID: 627618876}
-  - {fileID: 1585610732}
   - {fileID: 1235218020}
