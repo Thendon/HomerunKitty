@@ -19,7 +19,7 @@ public class PlayerPointsManager : MonoBehaviour
     public GameObject endScreen;
     public GameObject scorePrefab;
     public ScoreText scoreText;
-    public TMP_Text highScoreText;
+    public HighscoreText highScoreText;
     private Vector3 startScale;
     public int playerid = 0;
 
@@ -27,13 +27,15 @@ public class PlayerPointsManager : MonoBehaviour
 
     void Start()
     {
+        highScoreText = FindFirstObjectByType<HighscoreText>();
+
         upgrades = new List<Upgrade>();
 
         if (PlayerPrefs.HasKey("Highscore"))
         {
             highscore = PlayerPrefs.GetInt("Highscore");
 
-            highScoreText.text = "Highscore: " + highscore;
+            highScoreText.SetScore(highscore);
         }
         else
         {
@@ -101,7 +103,7 @@ public class PlayerPointsManager : MonoBehaviour
 
             PlayerPrefs.SetInt("Highscore", highscore);
 
-            highScoreText.text = "Highscore: " + highscore;
+            highScoreText.SetScore(highscore);
         }
     }
 
