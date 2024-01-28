@@ -11,6 +11,9 @@ public class TileSpawner : MonoBehaviour
     protected GameObject m_SpawnTile;
 
     [SerializeField]
+    protected GameObject m_SpawnerTile;
+
+    [SerializeField]
     protected Vector2Int m_Size;
 
     [SerializeField]
@@ -60,8 +63,15 @@ public class TileSpawner : MonoBehaviour
                 }
                 else
                 {
-                    int toSpawn = Random.Range(0, m_ToSpawn.Count);
-                    newTileGameObject = Instantiate(m_ToSpawn[toSpawn], position, rot, transform);
+                    if (Random.Range(0.0f, 1.0f) < boidsSpawnerChance)
+                    {
+                        newTileGameObject = Instantiate(m_SpawnerTile, position, rot, transform);
+                    }
+                    else
+                    {
+                        int toSpawn = Random.Range(0, m_ToSpawn.Count);
+                        newTileGameObject = Instantiate(m_ToSpawn[toSpawn], position, rot, transform);
+                    }
                 }
 
                 newTileGameObject.transform.localScale = Vector3.one * 100f * m_TileSize;
@@ -77,10 +87,7 @@ public class TileSpawner : MonoBehaviour
 
                 tile.Drop(timeToDrop);
 
-                if(!isCenterTile && Random.Range(0.0f, 1.0f) < boidsSpawnerChance)
-                {
-                    newTileGameObject.AddComponent<BoidSpawner>();
-                }
+                
             }
         }
     }

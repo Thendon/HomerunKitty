@@ -394,6 +394,7 @@ MonoBehaviour:
   - {fileID: 1834921306239466113, guid: d75e4691bc4c4834f806b66ed303ca31, type: 3}
   - {fileID: 1651041628217114820, guid: 90e8c22117d35ba4495a3f96ca174379, type: 3}
   m_SpawnTile: {fileID: 1651041628217114820, guid: 65c598a1d77743d49b23dd85b65f1caf, type: 3}
+  m_SpawnerTile: {fileID: 1651041628217114820, guid: 519665c137c04dd44820f2b4760f71ca, type: 3}
   m_Size: {x: 17, y: 17}
   m_TileSize: 5
   m_MinTime: 1e+9
