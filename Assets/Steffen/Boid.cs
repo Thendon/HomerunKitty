@@ -40,6 +40,7 @@ public class Boid : MonoBehaviour, IHitable
             return;
         }
 
+        this.player = player;
         isHit = true;
         
         respawnTimer = 0.0f;
