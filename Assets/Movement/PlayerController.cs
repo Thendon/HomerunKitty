@@ -20,7 +20,9 @@ namespace HomerunKitty
         public float jumpCooldown = 1.0f;
         public float groundDetection = 0.05f;
         public LayerMask groundLayerMask;
-
+        public InputManagerSystem input;
+        public bool useNewInput => input != null;
+            
 
         [System.NonSerialized]
         public Vector3 movementInput = Vector3.zero;
@@ -68,29 +70,49 @@ namespace HomerunKitty
 
             movementInput = Vector3.zero;
 
-            if (Input.GetKey(KeyCode.W)) 
-                movementInput.z += 1;
-            if (Input.GetKey(KeyCode.S)) 
-                movementInput.z -= 1;
-
-            if (Input.GetKey(KeyCode.D)) 
-                movementInput.x += 1;
-            if (Input.GetKey(KeyCode.A)) 
-                movementInput.x -= 1;
-
-            if (Input.GetKey(KeyCode.Space) && nextJump <= 0.0f && IsTouchingGround())
+            if (useNewInput)
             {
-                jumpRequested = true;
-                nextJump = jumpCooldown;
-            }
+                movementInput = new Vector3(input.move.x, 0.0f, input.move.y);
+                movementInput.Normalize();
+                if (input.jump && nextJump <= 0.0f && IsTouchingGround())
+                    jumpRequested = input.jump;
 
+                if (input.mouseAim)
+                    aimInput = GetMouseAim(input.aim);
+                else
+                    aimInput = new Vector3(input.aim.x, 0.0f, input.aim.y) * handTargetMaxDistance;
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.W))
+                    movementInput.z += 1;
+                if (Input.GetKey(KeyCode.S))
+                    movementInput.z -= 1;
+
+                if (Input.GetKey(KeyCode.D))
+                    movementInput.x += 1;
+                if (Input.GetKey(KeyCode.A))
+                    movementInput.x -= 1;
+
+                if (Input.GetKey(KeyCode.Space) && nextJump <= 0.0f && IsTouchingGround())
+                {
+                    jumpRequested = true;
+                    nextJump = jumpCooldown;
+                }
+
+                aimInput = GetMouseAim(Input.mousePosition);
+            }
+        }
+
+        Vector3 GetMouseAim(Vector2 mousePos)
+        {
             //when using mouse
-            Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray camRay = Camera.main.ScreenPointToRay(mousePos);
             Plane playerPlane = new Plane(Vector3.up, transform.position + handTargetHeight * Vector3.up);
             playerPlane.Raycast(camRay, out float hitDist);
             Vector3 hitPoint = camRay.origin + camRay.direction * hitDist;
             hitPoint.y = transform.position.y;
-            aimInput = Vector3.ClampMagnitude(hitPoint - transform.position, handTargetMaxDistance);
+            return Vector3.ClampMagnitude(hitPoint - transform.position, handTargetMaxDistance);
         }
 
         private void FixedUpdate()
