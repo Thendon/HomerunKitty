@@ -21,12 +21,17 @@ public class EndScreen : MonoBehaviour
         if (GameManager.instance.playerCount == 1)
         {
             this.player1Result.text = "Player 1: " + playerPoints[0].points.ToString();
+            this.player2Result.enabled = false;
+            this.player3Result.enabled = false;
+            this.player4Result.enabled = false;
         }
         else
         if (GameManager.instance.playerCount == 2)
         {
             this.player1Result.text = "Player 1: " + playerPoints[0].points.ToString();
             this.player2Result.text = "Player 2: " + playerPoints[1].points.ToString();
+            this.player3Result.enabled = false;
+            this.player4Result.enabled = false;
 
         }
         else
@@ -35,6 +40,7 @@ public class EndScreen : MonoBehaviour
             this.player1Result.text = "Player 1: " + playerPoints[0].points.ToString();
             this.player2Result.text = "Player 2: " + playerPoints[1].points.ToString();
             this.player3Result.text = "Player 3: " + playerPoints[2].points.ToString();
+            this.player4Result.enabled = false;
 
         }
         else

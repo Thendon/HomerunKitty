@@ -30,7 +30,7 @@ public class GameManager : SingletonGlobalSelfInstancing<GameManager>
 
     public void LoadLevel()
     {
-        SceneManager.LoadScene("GameSceneMarcel");
+        SceneManager.LoadScene("GameScene");
     }
 
     public void EnableMultiplayer()
