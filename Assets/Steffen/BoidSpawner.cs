@@ -39,7 +39,12 @@ public class BoidSpawner : MonoBehaviour
     {
         for (int i = 0; i < currentSpawnAmount; i++)
         {
-            Boid boidInstance = Instantiate(boidController.boidPrefab).GetComponentInChildren<Boid>();
+            if(boidController.boids.Count >= boidController.maxBoidsCount)
+            {
+                continue;
+            }
+
+            Boid boidInstance = Instantiate(boidController.boidPrefab, boidController.boidsParent).GetComponentInChildren<Boid>();
 
             Vector3 spawnPosition = spawnArea.bounds.min;
             spawnPosition.x += (spawnArea.bounds.max.x - spawnArea.bounds.min.x) * UnityEngine.Random.Range(0.0f, 1.0f);

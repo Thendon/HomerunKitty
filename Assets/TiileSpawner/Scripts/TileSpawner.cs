@@ -38,7 +38,9 @@ public class TileSpawner : MonoBehaviour
 
                 int toSpawn = Random.Range(0, m_ToSpawn.Count);
 
-                GameObject newTileGameObject = Instantiate(m_ToSpawn[toSpawn], position, Quaternion.identity, transform);
+                Quaternion rot = Quaternion.Euler(0, 60 * Random.Range(0, 6), 0);
+
+                GameObject newTileGameObject = Instantiate(m_ToSpawn[toSpawn], position, rot, transform);
 
                 newTileGameObject.transform.localScale = Vector3.one * 100f * m_TileSize;
 

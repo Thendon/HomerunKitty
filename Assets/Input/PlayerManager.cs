@@ -32,13 +32,25 @@ public class PlayerManager : SingletonGlobal<PlayerManager>
     {
         foreach (var device in inputDevices)
         {
+            if (device.name == "Mouse")
+                continue;
+
             Debug.Log("Spawn player for device " + device);
             GameObject playerInstance = Instantiate(playerPrefab);
             playerInstance.transform.position = spawnPos;
             playerInstance.GetComponentInChildren<PlayerController>().GroundPlayer();
             devicePlayerMap.Add(device, playerInstance);
             InputManagerSystem playerInput = playerInstance.GetComponentInChildren<InputManagerSystem>();
-            playerInput.Init(device);
+            playerInput.Init();
+            playerInput.AddDevice(device);
+            if (device.name == "Keyboard")
+            {
+                foreach (var device2 in inputDevices)
+                {
+                    if (device.name == "Mouse")
+                        playerInput.AddDevice(device2);
+                }
+            }
             targetGroup.AddMember(playerInstance.transform, 1, 5);
         }
     }
