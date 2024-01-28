@@ -13,8 +13,6 @@ public class BoidController : SingletonScene<BoidController>
 
     // Revive hit once based on timer
 
-    public PlayerPointsManager player;
-
     // Rule Weights
 
     public float alignWeight = 1.0f; 
@@ -90,10 +88,8 @@ public class BoidController : SingletonScene<BoidController>
     {
         if(boids.Contains(boid))
         {
-            if (boid.isHit && player != null)
-            {
-                player.AddPoints(1 /* + distance from hit*/);
-            }
+            if (boid.isHit)
+                boid.player.AddPoints(1 /* + distance from hit*/);
 
             int index = boids.IndexOf(boid);
 

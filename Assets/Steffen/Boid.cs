@@ -31,8 +31,6 @@ public class Boid : MonoBehaviour, IHitable
 
         if (isHit)
         {
-            Debug.Log(rigidBody.velocity.magnitude);
-
             if(rigidBody.velocity.magnitude < respawnVelocityThreshold)
             {
                 respawnTimer += Time.deltaTime;
