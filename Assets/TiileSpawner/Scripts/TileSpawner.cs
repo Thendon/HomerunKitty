@@ -43,7 +43,7 @@ public class TileSpawner : MonoBehaviour
 
             for (int z = 0; z < howMany; z++)
             {
-                bool isCenterTile = x == 0 && z == (howMany - 1) / 2;
+                bool isCenterTile = x == 0 && z == howMany / 2;
 
                 if (!isCenterTile && Random.Range(0.0f, 1.0f) < noTileChance)
                 {
