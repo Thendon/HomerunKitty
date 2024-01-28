@@ -65,7 +65,7 @@ public class BaseballBatPhysics : MonoBehaviour
                 return;
             hitableNextHitTime[hash] = Time.time + hitCooldown;
 
-            hitable.Hit(player);
+            hitable.Hit(player, force);
 
             //VisualEffect hitEffect = Instantiate(hitEffectPrefab, collision.contacts[0].point, Quaternion.identity).;
 

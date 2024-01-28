@@ -83,7 +83,7 @@ public class BoidController : SingletonScene<BoidController>
 
         boids.Add(boid);
 
-        boid.transform.SetParent(boidsParent);
+        //boid.transform.SetParent(boidsParent);
     }
 
     public void RemoveBoid(Boid boid)
@@ -141,7 +141,7 @@ public class BoidController : SingletonScene<BoidController>
             boids.Add(boidInstance);
             boidsData[i] = boidData;
 
-            boidInstance.transform.SetParent(boidsParent);
+            //boidInstance.transform.SetParent(boidsParent);
         }
     }
 

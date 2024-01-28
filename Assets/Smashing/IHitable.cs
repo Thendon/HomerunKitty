@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IHitable
 {
-    public abstract void Hit(PlayerPointsManager player);
+    public abstract void Hit(PlayerPointsManager player, Vector3 force);
 }
