@@ -17,6 +17,8 @@ public class UIScript : MonoBehaviour//SingletonGlobalSelfInstancing<UIScript>
        
     }
 
+    public TileSpawner tileSpawner;
+
     public Button exitBtn;
     public Button singleplayerBtn;
     public Button multiplayerBtn;
@@ -46,6 +48,8 @@ public class UIScript : MonoBehaviour//SingletonGlobalSelfInstancing<UIScript>
         player2character = CharacterChoice.Otter;
         player3character = CharacterChoice.Fox;
         player4character = CharacterChoice.Cat;
+
+        tileSpawner.Spawn();
     }
 
     //public void ChangeCharacter(string character)

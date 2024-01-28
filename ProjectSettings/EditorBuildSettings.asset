@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameSceneMarcel.unity
     guid: 07c48e13581a4a6448191117c303f4b7
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 48761b342424ff545a6c61ef6602bc0b
   m_configObjects: {}
