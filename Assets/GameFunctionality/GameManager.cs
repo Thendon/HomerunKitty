@@ -15,7 +15,7 @@ public class GameManager : SingletonGlobalSelfInstancing<GameManager>
     public UIScript.CharacterChoice player4character;
     public string scene;
     public int playerCount;
-    public AudioClip song;
+    public AudioSource ingameSong;
 
 
     public int p1Points = 0;
@@ -25,12 +25,13 @@ public class GameManager : SingletonGlobalSelfInstancing<GameManager>
 
     public void Start()
     {
-        GetComponent<AudioSource>().enabled = true;
+        
     }
 
     public void LoadLevel()
     {
         SceneManager.LoadScene("GameScene");
+        ingameSong.Play();
     }
 
     public void EnableMultiplayer()
@@ -40,6 +41,8 @@ public class GameManager : SingletonGlobalSelfInstancing<GameManager>
 
     public void FindNewMenu()
     {
+        ingameSong.Stop();
+        GetComponent<AudioSource>().enabled = true;
         try
         {
             this.menu = FindObjectOfType<UIScript>();
