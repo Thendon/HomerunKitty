@@ -1386,8 +1386,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ToSpawn:
   - {fileID: 1278276451620929080, guid: e7aed14dc0a08ae49a518dc75f5e6fc4, type: 3}
-  - {fileID: 1651041628217114820, guid: 90e8c22117d35ba4495a3f96ca174379, type: 3}
+  - {fileID: 1651041628217114820, guid: 65c598a1d77743d49b23dd85b65f1caf, type: 3}
   - {fileID: 1834921306239466113, guid: d75e4691bc4c4834f806b66ed303ca31, type: 3}
+  - {fileID: 1651041628217114820, guid: 90e8c22117d35ba4495a3f96ca174379, type: 3}
   m_Size: {x: 17, y: 17}
   m_TileSize: 5
   m_MinTime: 10
@@ -1692,7 +1693,7 @@ PrefabInstance:
       objectReference: {fileID: 278978535}
     - target: {fileID: 6119548023837552342, guid: bf1b3cfabc53e48438d70a71c9d33362, type: 3}
       propertyPath: initialWeight
-      value: 1000
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 6119548023837552342, guid: bf1b3cfabc53e48438d70a71c9d33362, type: 3}
       propertyPath: hitEffectPrefab
