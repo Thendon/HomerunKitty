@@ -47,11 +47,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugHitSpeed: 10
-  initialWeight: 1000
+  initialWeight: 100
   bonusWeight: 0
   bonusSize: 0
   owner: {fileID: 0}
   player: {fileID: 0}
+  hitCooldown: 1
+  hitEffectPrefab: {fileID: 0}
+  velocityOffset: {x: 0, y: 0, z: 0, w: 0}
+  velocityLerpFactor: 1
 --- !u!54 &4079558217141616279
 Rigidbody:
   m_ObjectHideFlags: 0
