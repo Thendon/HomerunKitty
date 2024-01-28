@@ -56,7 +56,6 @@ public class GameManager : SingletonGlobalSelfInstancing<GameManager>
     public void FindNewMenu()
     {
         ingameSong.Stop();
-        GetComponent<AudioSource>().enabled = true;
         try
         {
             this.menu = FindObjectOfType<UIScript>();
