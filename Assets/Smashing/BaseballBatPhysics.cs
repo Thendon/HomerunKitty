@@ -16,6 +16,7 @@ public class BaseballBatPhysics : MonoBehaviour
     public Quaternion velocityOffset;
     public float velocityLerpFactor = 1.0f;
     public float weightingFactor = 0.2f;
+    public Vector3 additionalHitUpforce = Vector3.up;
 
     Vector3 prevPos;
     Vector3 velocity;
@@ -70,7 +71,9 @@ public class BaseballBatPhysics : MonoBehaviour
                 return;
             hitableNextHitTime[hash] = Time.time + hitCooldown;
 
-            hitable.Hit(player, force);
+
+            Vector3 modifiedForce = force + additionalHitUpforce;
+            hitable.Hit(player, modifiedForce);
 
             //VisualEffect hitEffect = Instantiate(hitEffectPrefab, collision.contacts[0].point, Quaternion.identity).;
 

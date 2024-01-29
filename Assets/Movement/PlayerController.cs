@@ -55,7 +55,8 @@ namespace HomerunKitty
 
             if (Physics.SphereCast(castOrigin, radius, Vector3.down, out hit, castDistance, groundLayerMask))
             {
-                transform.position = hit.point;
+                rb.position = hit.point;
+                //transform.position = hit.point;
             }
             else
             {

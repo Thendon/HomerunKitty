@@ -82,13 +82,23 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
         ScoreText[] scores = FindObjectsByType<ScoreText>(FindObjectsSortMode.InstanceID);
 
         int i = 0;
+        int numPlayers = inputDevices.Count;
+        float spawnAngleOffsetPerPlayer = 360f / (float)numPlayers;
+        
         foreach (var device in inputDevices)
         {
             if (device.name == "Mouse")
                 continue;
             Debug.Log("Spawn player for device " + device);
-            GameObject playerInstance = Instantiate(playerPrefabs[Random.Range(0, playerPrefabs.Count)]);
-            playerInstance.transform.position = spawnPos;
+
+
+            float spawnAngle = spawnAngleOffsetPerPlayer * (float)i;
+            Vector3 addPos = Quaternion.Euler(0, spawnAngle, 0) * (1.5f * Vector3.right);
+            Vector3 spawnPosition = spawnPos + addPos;
+
+            GameObject playerInstance = Instantiate(playerPrefabs[Random.Range(0, playerPrefabs.Count)], spawnPosition, Quaternion.identity);
+            //playerInstance.GetComponent<Rigidbody>().position = spawnPosition;
+
             playerInstance.GetComponentInChildren<PlayerController>().GroundPlayer();
             InputManagerSystem playerInput = playerInstance.GetComponentInChildren<InputManagerSystem>();
             devicePlayerMap.Add(device, playerInput);
