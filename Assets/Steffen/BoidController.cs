@@ -89,7 +89,7 @@ public class BoidController : SingletonScene<BoidController>
         if(boids.Contains(boid))
         {
             if (boid.isHit && boid.player != null)
-                boid.player.AddPoints(1 /* + distance from hit*/);
+                boid.player.AddPoints((int)boid.hitForce);
 
             int index = boids.IndexOf(boid);
 
