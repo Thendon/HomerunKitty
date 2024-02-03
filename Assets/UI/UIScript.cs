@@ -14,7 +14,6 @@ public class UIScript : MonoBehaviour//SingletonGlobalSelfInstancing<UIScript>
         Cat,
         Otter,
         Fox
-       
     }
 
     public TileSpawner tileSpawner;
