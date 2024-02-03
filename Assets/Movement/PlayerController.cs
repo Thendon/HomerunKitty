@@ -33,12 +33,14 @@ namespace HomerunKitty
 
         Rigidbody rb;
         CapsuleCollider capsuleCollider;
+        PlayerPointsManager playerPointsManager;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
             animator = GetComponentInChildren<Animator>();
             capsuleCollider = GetComponentInChildren<CapsuleCollider>();
+            playerPointsManager = GetComponentInChildren<PlayerPointsManager>();
 
             ConfigureRigidbody();
         }
@@ -98,7 +100,16 @@ namespace HomerunKitty
                 movementInput = new Vector3(input.move.x, 0.0f, input.move.y);
                 movementInput.Normalize();
                 if (input.jump && nextJump <= 0.0f && IsTouchingGround())
+                {
                     jumpRequested = input.jump;
+                    input.jump = false;
+                    nextJump = jumpCooldown;
+                }
+                if (input.upgrade)
+                {
+                    playerPointsManager.BuyUpgrade();
+                    input.upgrade = false;
+                }
 
                 if (input.mouseAim)
                     aimInput = GetMouseAim(input.aim);

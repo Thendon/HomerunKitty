@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -22,6 +23,7 @@ public class PlayerPointsManager : MonoBehaviour
     public HighscoreText highScoreText;
     private Vector3 startScale;
     public int playerid = 0;
+    List<Upgrade> avaliableUpgrades = new List<Upgrade>();
 
     public AnimationCurve curve;
 
@@ -58,38 +60,38 @@ public class PlayerPointsManager : MonoBehaviour
         }
     }
 
-    public void OnTriggerUpgradeEnter(Collider other)
+    Upgrade GetAvaliableUpgrade()
     {
-        Debug.Log("UpgradeBuy");
-        //RaycastHit hit;
-        //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 2f, upgradeLayer))
-        //if(other.gameObject.layer == upgradeLayer)
-        //{
-            Debug.Log("Raycast true");
-            Upgrade upgrade = other.transform.GetComponent<Upgrade>();
+        foreach (Upgrade upgrade in avaliableUpgrades)
+        {
+            if (points >= upgrade.cost)
+                return upgrade;
+        }
+        return null;
+    }
 
-            if (!upgrades.Contains(upgrade) && points >= upgrade.cost)
-            {
-                Debug.Log("adding Upgrade");
-                upgrades.Add(upgrade);
-                bonusSize += upgrade.bonusSize;
-                bonusWeight += upgrade.bonusWeight;
-                bonusSpeed += upgrade.bonusSpeed;
-                AddPoints(-upgrade.cost);
-                bat.AddUpgrade(bonusSize, bonusWeight,bonusSpeed);
+    public void BuyUpgrade()
+    {
+        Upgrade upgrade = GetAvaliableUpgrade();
 
-            }
-            other.transform.gameObject.SetActive(false);
-        //}
-        //Debug.Log(collision);
+        if (upgrade == null)
+            return;
 
+        upgrades.Add(upgrade);
+        bonusSize += Mathf.Max(upgrade.bonusSize, 0.0f);
+        bonusWeight += Mathf.Max(upgrade.bonusWeight, 0.0f);
+        bonusSpeed += Mathf.Max(upgrade.bonusSpeed, 0.0f);
+        AddPoints(-upgrade.cost);
+        bat.SetUpgrade(bonusSize, bonusWeight,bonusSpeed);
+
+        Destroy(upgrade.gameObject);
     }
 
     public void AddPoints(int amount)
     {
         points += amount;
 
-        scoreText.SetScore(playerid, amount);//"Score: " + points;
+        scoreText.SetScore(playerid, points);//"Score: " + points;
 
         if (scoringRoutine != null)
         {
@@ -144,5 +146,15 @@ public class PlayerPointsManager : MonoBehaviour
 
         scoreInstance.Init(amount);
         scoreInstance.transform.position = hitPos;
+    }
+
+    public void AddAvaliableUprade(Upgrade upgrade)
+    {
+        avaliableUpgrades.Add(upgrade);
+    }
+
+    public void RemoveAvaliableUpgrade(Upgrade upgrade)
+    {
+        avaliableUpgrades.Remove(upgrade);
     }
 }

@@ -54,7 +54,7 @@ MonoBehaviour:
   bat: {fileID: 0}
   upgradeLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   player: TheLegend27
   dead: 0
   endScreen: {fileID: 6663856778371844503, guid: 53a5f7f7eac7a234381cb5bd40be1b5b, type: 3}

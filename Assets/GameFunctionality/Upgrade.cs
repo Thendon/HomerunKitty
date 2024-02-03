@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,23 +10,43 @@ public class Upgrade : MonoBehaviour
     public float bonusWeight;
     public float bonusSize;
     public int cost;
+    public Action onDestroyUpgrade;
+    List<PlayerPointsManager> players = new List<PlayerPointsManager>();
 
     public void Start()
     {
-        GetComponentInChildren<TMPro.TextMeshPro>().text = "Size: +" + bonusSize + "\nWeight: +" + bonusWeight + "\nCost: -" + cost; ;
+        GetComponentInChildren<TMPro.TextMeshPro>().text = "Size: " + (bonusSize > 0 ? "+" : "-") + Mathf.Abs(bonusSize) +
+                                                           "\nWeight: " + (bonusWeight > 0 ? "+" : "-") + Mathf.Abs(bonusWeight) +
+                                                           "\nCost: " + (cost > 0 ? "+" : "-") + Mathf.Abs(cost);
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var p in players)
+            p.RemoveAvaliableUpgrade(this);
+
+        players.Clear();
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 6)
-        {
-            if (other.GetComponentInChildren<PlayerPointsManager>() != null)
-            {
-                PlayerPointsManager pointsmanager = other.GetComponentInChildren<PlayerPointsManager>();
-                pointsmanager.OnTriggerUpgradeEnter(this.GetComponent<SphereCollider>());
+        PlayerPointsManager pointsmanager = other.attachedRigidbody.GetComponentInChildren<PlayerPointsManager>();
+        if (pointsmanager == null)
+            return;
+        if (players.Contains(pointsmanager))
+            return;
+        pointsmanager.AddAvaliableUprade(this);
+        players.Add(pointsmanager);
 
-            }
-        }
+        //pointsmanager.OnTriggerUpgradeEnter(this.GetComponent<SphereCollider>());
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        PlayerPointsManager pointsmanager = other.attachedRigidbody.GetComponentInChildren<PlayerPointsManager>();
+        if (pointsmanager == null)
+            return;
+        pointsmanager.RemoveAvaliableUpgrade(this);
+        players.Remove(pointsmanager);
+    }
 }

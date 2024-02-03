@@ -9,7 +9,7 @@ public class ScoreEffect : MonoBehaviour
     public List<AudioClip> soundEffects = new List<AudioClip>();
     public AudioSource audioSource = null;
     public Vector3 movementVector = new Vector3();
-    public float volumeDivider = 200.0f;
+    public float volumeDivider = 100.0f;
 
     float deathTime;
 
@@ -22,7 +22,7 @@ public class ScoreEffect : MonoBehaviour
     {
         text.text = Mathf.RoundToInt(amount).ToString();
         AudioClip soundEffect = soundEffects[Random.Range(0, soundEffects.Count)];
-        audioSource.volume = Mathf.Clamp01(amount / volumeDivider);
+        audioSource.volume = Mathf.Clamp01((amount / volumeDivider) * 0.7f + 0.3f);
         audioSource.PlayOneShot(soundEffect);
     }
 

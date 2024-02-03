@@ -119,7 +119,7 @@ public class BaseballBatPhysics : MonoBehaviour
         return Quaternion.AngleAxis(angle, axis) * start;
     }
 
-    public void AddUpgrade(float bonusSize, float bonusWeight, float bonusSpeed)
+    public void SetUpgrade(float bonusSize, float bonusWeight, float bonusSpeed)
     {
         this.bonusSize = bonusSize;
         this.bonusWeight = bonusWeight;

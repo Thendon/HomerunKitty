@@ -207,6 +207,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 5303404942355786544}
     m_Modifications:
     - target: {fileID: 3300237624449978724, guid: 3e04a20dc959aca41be667dc52a6ba77, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300237624449978724, guid: 3e04a20dc959aca41be667dc52a6ba77, type: 3}
       propertyPath: m_SizeDelta.y
       value: 13.9
       objectReference: {fileID: 0}
@@ -253,6 +257,14 @@ PrefabInstance:
     - target: {fileID: 4548477936916837731, guid: 3e04a20dc959aca41be667dc52a6ba77, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: 3e04a20dc959aca41be667dc52a6ba77, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: 3e04a20dc959aca41be667dc52a6ba77, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7890307976376078208, guid: 3e04a20dc959aca41be667dc52a6ba77, type: 3}
       propertyPath: m_Name
@@ -317,6 +329,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 5303404942355786544}
     m_Modifications:
     - target: {fileID: 3300237624449978724, guid: 7c773a6e7a03ab54bbd02874184f4024, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300237624449978724, guid: 7c773a6e7a03ab54bbd02874184f4024, type: 3}
       propertyPath: m_SizeDelta.y
       value: 13.9
       objectReference: {fileID: 0}
@@ -363,6 +379,14 @@ PrefabInstance:
     - target: {fileID: 4548477936916837731, guid: 7c773a6e7a03ab54bbd02874184f4024, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: 7c773a6e7a03ab54bbd02874184f4024, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: 7c773a6e7a03ab54bbd02874184f4024, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7890307976376078208, guid: 7c773a6e7a03ab54bbd02874184f4024, type: 3}
       propertyPath: m_Name
@@ -439,6 +463,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 5303404942355786544}
     m_Modifications:
     - target: {fileID: 3300237624449978724, guid: 6d68417f664fc68438f206520fea6f40, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300237624449978724, guid: 6d68417f664fc68438f206520fea6f40, type: 3}
       propertyPath: m_SizeDelta.y
       value: 13.9
       objectReference: {fileID: 0}
@@ -485,6 +513,14 @@ PrefabInstance:
     - target: {fileID: 4548477936916837731, guid: 6d68417f664fc68438f206520fea6f40, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: 6d68417f664fc68438f206520fea6f40, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: 6d68417f664fc68438f206520fea6f40, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7890307976376078208, guid: 6d68417f664fc68438f206520fea6f40, type: 3}
       propertyPath: m_Name
@@ -549,6 +585,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 5303404942355786544}
     m_Modifications:
     - target: {fileID: 3300237624449978724, guid: adab6c87e7bf73445b0f93e6513e40b4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300237624449978724, guid: adab6c87e7bf73445b0f93e6513e40b4, type: 3}
       propertyPath: m_SizeDelta.y
       value: 13.9
       objectReference: {fileID: 0}
@@ -595,6 +635,14 @@ PrefabInstance:
     - target: {fileID: 4548477936916837731, guid: adab6c87e7bf73445b0f93e6513e40b4, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: adab6c87e7bf73445b0f93e6513e40b4, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: adab6c87e7bf73445b0f93e6513e40b4, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7890307976376078208, guid: adab6c87e7bf73445b0f93e6513e40b4, type: 3}
       propertyPath: m_Name
@@ -659,6 +707,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 5303404942355786544}
     m_Modifications:
     - target: {fileID: 3300237624449978724, guid: 5eae43e82e5d36447bc8992cddff1416, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300237624449978724, guid: 5eae43e82e5d36447bc8992cddff1416, type: 3}
       propertyPath: m_SizeDelta.y
       value: 13.9
       objectReference: {fileID: 0}
@@ -705,6 +757,14 @@ PrefabInstance:
     - target: {fileID: 4548477936916837731, guid: 5eae43e82e5d36447bc8992cddff1416, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: 5eae43e82e5d36447bc8992cddff1416, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: 5eae43e82e5d36447bc8992cddff1416, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7890307976376078208, guid: 5eae43e82e5d36447bc8992cddff1416, type: 3}
       propertyPath: m_Name
@@ -769,6 +829,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 5303404942355786544}
     m_Modifications:
     - target: {fileID: 3300237624449978724, guid: d6639a41911e5c9478253b945aa8f257, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300237624449978724, guid: d6639a41911e5c9478253b945aa8f257, type: 3}
       propertyPath: m_SizeDelta.y
       value: 13.9
       objectReference: {fileID: 0}
@@ -815,6 +879,14 @@ PrefabInstance:
     - target: {fileID: 4548477936916837731, guid: d6639a41911e5c9478253b945aa8f257, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: d6639a41911e5c9478253b945aa8f257, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: d6639a41911e5c9478253b945aa8f257, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7890307976376078208, guid: d6639a41911e5c9478253b945aa8f257, type: 3}
       propertyPath: m_Name
@@ -879,6 +951,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 5303404942355786544}
     m_Modifications:
     - target: {fileID: 3300237624449978724, guid: a6f58c14dc7a5614ba0a3f7547c3bc0b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300237624449978724, guid: a6f58c14dc7a5614ba0a3f7547c3bc0b, type: 3}
       propertyPath: m_SizeDelta.y
       value: 13.9
       objectReference: {fileID: 0}
@@ -925,6 +1001,14 @@ PrefabInstance:
     - target: {fileID: 4548477936916837731, guid: a6f58c14dc7a5614ba0a3f7547c3bc0b, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: a6f58c14dc7a5614ba0a3f7547c3bc0b, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: a6f58c14dc7a5614ba0a3f7547c3bc0b, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7890307976376078208, guid: a6f58c14dc7a5614ba0a3f7547c3bc0b, type: 3}
       propertyPath: m_Name
@@ -989,6 +1073,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 5303404942355786544}
     m_Modifications:
     - target: {fileID: 3300237624449978724, guid: 53a4959329fef8e46887dd7e3dd3db94, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300237624449978724, guid: 53a4959329fef8e46887dd7e3dd3db94, type: 3}
       propertyPath: m_SizeDelta.y
       value: 13.9
       objectReference: {fileID: 0}
@@ -1035,6 +1123,14 @@ PrefabInstance:
     - target: {fileID: 4548477936916837731, guid: 53a4959329fef8e46887dd7e3dd3db94, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: 53a4959329fef8e46887dd7e3dd3db94, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: 53a4959329fef8e46887dd7e3dd3db94, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7890307976376078208, guid: 53a4959329fef8e46887dd7e3dd3db94, type: 3}
       propertyPath: m_Name
@@ -1099,6 +1195,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 5303404942355786544}
     m_Modifications:
     - target: {fileID: 3300237624449978724, guid: 8bc0c2d8e1b356746b573c5f7655cfbe, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300237624449978724, guid: 8bc0c2d8e1b356746b573c5f7655cfbe, type: 3}
       propertyPath: m_SizeDelta.y
       value: 13.9
       objectReference: {fileID: 0}
@@ -1145,6 +1245,14 @@ PrefabInstance:
     - target: {fileID: 4548477936916837731, guid: 8bc0c2d8e1b356746b573c5f7655cfbe, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: 8bc0c2d8e1b356746b573c5f7655cfbe, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: 8bc0c2d8e1b356746b573c5f7655cfbe, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7890307976376078208, guid: 8bc0c2d8e1b356746b573c5f7655cfbe, type: 3}
       propertyPath: m_Name
@@ -1209,6 +1317,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 5303404942355786544}
     m_Modifications:
     - target: {fileID: 3300237624449978724, guid: 99bc56262cf5f554ca3a775de0e436ec, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300237624449978724, guid: 99bc56262cf5f554ca3a775de0e436ec, type: 3}
       propertyPath: m_SizeDelta.y
       value: 13.9
       objectReference: {fileID: 0}
@@ -1243,6 +1355,14 @@ PrefabInstance:
     - target: {fileID: 4548477936916837731, guid: 99bc56262cf5f554ca3a775de0e436ec, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: 99bc56262cf5f554ca3a775de0e436ec, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548477936916837731, guid: 99bc56262cf5f554ca3a775de0e436ec, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7890307976376078208, guid: 99bc56262cf5f554ca3a775de0e436ec, type: 3}
       propertyPath: m_Name

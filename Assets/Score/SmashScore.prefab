@@ -387,6 +387,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7b8ca63488f6a9b4e8fa38b5e4286c83, type: 3}
   audioSource: {fileID: 3566124272135997801}
   movementVector: {x: 0.2, y: 1, z: 0}
+  volumeDivider: 100
 --- !u!82 &3566124272135997801
 AudioSource:
   m_ObjectHideFlags: 0
@@ -408,7 +409,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 300
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

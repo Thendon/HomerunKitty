@@ -209,6 +209,20 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
         InputManagerSystem sys = GetInput(context.control.device);
         if (sys == null)
             return;
-        sys.jump = context.ReadValue<float>() > 0.5f;
+        if (context.canceled)
+            sys.jump = false;
+        if (context.started)
+            sys.jump = true;
+    }
+
+    public void OnUpgrade(InputAction.CallbackContext context)
+    {
+        InputManagerSystem sys = GetInput(context.control.device);
+        if (sys == null)
+            return;
+        if (context.canceled)
+            sys.upgrade = false;
+        if (context.started)
+            sys.upgrade = true;
     }
 }

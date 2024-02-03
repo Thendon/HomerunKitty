@@ -14,6 +14,7 @@ public partial class InputManagerSystem :  MonoBehaviour
 	public Vector2 aim = Vector2.zero;
 	public bool mouseAim = false;
 	public bool jump = false;
+	public bool upgrade = false;
 
 	InputControlScheme currentScheme;
 
