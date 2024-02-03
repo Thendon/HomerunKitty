@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class UpgradeTileSelector : MonoBehaviour
 {
-    public Upgrade[] upgrades;
-
     public void Start()
     {
+        Upgrade[] upgrades = GetComponentsInChildren<Upgrade>();
+
         int ran = Random.Range(0, upgrades.Length);
-        for(int i = 1; i<upgrades.Length; i++)
+        int upgradeCount = upgrades.Length;
+        for(int i = 0; i< upgradeCount; i++)
         {
             if(i != ran)
             {
                 Destroy(upgrades[i].gameObject);
-
             }
         }
     }
