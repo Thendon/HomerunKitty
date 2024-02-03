@@ -32,19 +32,41 @@ namespace HomerunKitty
         const float inputEpsilon = 0.01f;
 
         Rigidbody rb;
+        CapsuleCollider capsuleCollider;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
             animator = GetComponentInChildren<Animator>();
+            capsuleCollider = GetComponentInChildren<CapsuleCollider>();
 
             ConfigureRigidbody();
         }
 
         public void GroundPlayer()
         {
+            RaycastHit hit;
+            
+            const float castOriginDistance = 100f;
+            const float castDistance = 200f;
+            
+            Vector3 castOrigin = transform.position + Vector3.up * castOriginDistance;
+            float radius = capsuleCollider.radius;
+
+            if (Physics.SphereCast(castOrigin, radius, Vector3.down, out hit, castDistance, groundLayerMask))
+            {
+                rb.position = hit.point;
+                //transform.position = hit.point;
+            }
+            else
+            {
+                Assert.IsTrue(false);
+                Debug.Break();
+            }
+
+            /*
             Ray ray = new Ray(transform.position + Vector3.up * 1000.0f, Vector3.down);
-            if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, groundLayerMask))
+            if (Physics.Raycast(ray, out hit, float.MaxValue, groundLayerMask))
             {
                 transform.position = hit.point;
             }
@@ -53,6 +75,7 @@ namespace HomerunKitty
                 Assert.IsTrue(false);
                 Debug.Break();
             }
+            */
         }
 
         public bool IsTouchingGround()

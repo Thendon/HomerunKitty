@@ -54,7 +54,13 @@ VisualEffect:
     m_Vector2f:
       m_Array: []
     m_Vector3f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 1.5, y: 0, z: 1}
+        m_Name: input-hit-velocity
+        m_Overridden: 1
+      - m_Value: {x: 0, y: 0, z: 0}
+        m_Name: spawnPosition
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:

@@ -139,6 +139,9 @@ public class PlayerPointsManager : MonoBehaviour
     public void HitScore(Vector3 hitPos, float amount)
     {
         ScoreEffect scoreInstance = Instantiate(scorePrefab).GetComponent<ScoreEffect>();
+
+        amount = Mathf.Max(1f, amount);
+
         scoreInstance.Init(amount);
         scoreInstance.transform.position = hitPos;
     }

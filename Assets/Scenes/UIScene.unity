@@ -423,8 +423,8 @@ MonoBehaviour:
   m_SpawnerTile: {fileID: 1651041628217114820, guid: 519665c137c04dd44820f2b4760f71ca, type: 3}
   m_Size: {x: 17, y: 17}
   m_TileSize: 5
-  m_MinTime: 1e+9
-  m_MaxTime: 1e+9
+  m_MinTime: 1e+29
+  m_MaxTime: 1e+29
   boidsSpawnerChance: 0
 --- !u!4 &1437219681
 Transform:
@@ -485,13 +485,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b3f1db8c5205040b8ecf8d7f0cfcd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPos: {x: 0, y: 10, z: 0}
+  spawnPos: {x: 0, y: 1.5, z: 0}
   targetGroup: {fileID: 0}
   players: []
   playerPrefabs:
   - {fileID: 4842959004334213339, guid: 158e37982c951cf47929575d24c5427e, type: 3}
   - {fileID: 7145346798574303717, guid: 77d4eee991351d24885ae0365edebea2, type: 3}
-  - {fileID: 6567882495873370283, guid: bf1b3cfabc53e48438d70a71c9d33362, type: 3}
+  - {fileID: 5348901465988230875, guid: 557896832a976bc4297e7e30942772da, type: 3}
 --- !u!1 &1671515027
 GameObject:
   m_ObjectHideFlags: 0

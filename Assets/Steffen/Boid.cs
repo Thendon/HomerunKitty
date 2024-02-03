@@ -45,6 +45,8 @@ public class Boid : MonoBehaviour, IHitable
         
         respawnTimer = 0.0f;
 
+        rigidBody.AddForce(force);
+
         foreach (Transform child in rigidBody.transform)
         {
             SphereCollider sphereCollider = child.AddComponent<SphereCollider>();
