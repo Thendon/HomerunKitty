@@ -72,7 +72,7 @@ public class EndScreen : MonoBehaviour
     public void BackToMainMenu()
     {
         PlayerManager.instance.Reset();
-
+        GameManager.instance.ingameSong.Stop();
         SceneManager.LoadScene("UIScene");
     }
 }

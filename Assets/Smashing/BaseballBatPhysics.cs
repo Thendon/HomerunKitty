@@ -18,6 +18,8 @@ public class BaseballBatPhysics : MonoBehaviour
     public float weightingFactor = 0.2f;
     public Vector3 additionalHitUpforce = Vector3.up;
 
+    private float originalYLength;
+
     Vector3 prevPos;
     Vector3 velocity;
 
@@ -27,6 +29,7 @@ public class BaseballBatPhysics : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         prevPos = rb.position;
+        originalYLength = transform.localScale.y;
     }
 
     private void FixedUpdate()
@@ -124,6 +127,6 @@ public class BaseballBatPhysics : MonoBehaviour
         this.bonusSize = bonusSize;
         this.bonusWeight = bonusWeight;
 
-        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.x + bonusSize, transform.localScale.z);
+        transform.localScale = new Vector3(transform.localScale.x, originalYLength + bonusSize, transform.localScale.z);
     }
 }

@@ -123,7 +123,7 @@ MonoBehaviour:
   bonusSpeed: 0
   bonusWeight: 0
   bonusSize: 1.2
-  cost: 50
+  cost: 70
 --- !u!1 &8157677483801734021
 GameObject:
   m_ObjectHideFlags: 0

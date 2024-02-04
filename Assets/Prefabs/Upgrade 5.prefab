@@ -122,7 +122,7 @@ MonoBehaviour:
   upgradeName: Test
   bonusSpeed: 0
   bonusWeight: -500
-  bonusSize: 2.3
+  bonusSize: 2
   cost: 100
 --- !u!1 &8157677483801734021
 GameObject:

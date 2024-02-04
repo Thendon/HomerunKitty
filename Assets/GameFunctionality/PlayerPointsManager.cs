@@ -78,8 +78,24 @@ public class PlayerPointsManager : MonoBehaviour
             return;
 
         upgrades.Add(upgrade);
-        bonusSize += Mathf.Max(upgrade.bonusSize, 0.0f);
-        bonusWeight += Mathf.Max(upgrade.bonusWeight, 0.0f);
+        if(bat.transform.localScale.y + upgrade.bonusSize < 0.2)
+        {
+            bonusSize = -(bat.transform.localScale.y * 0.8f); 
+        }
+        else
+        {
+            bonusSize += upgrade.bonusSize;
+        }
+        if (bat.initialWeight + bat.bonusWeight + upgrade.bonusWeight < 100)
+        {
+            bonusWeight += -(bat.initialWeight + bat.bonusWeight) * 0.8f;
+        }
+        else
+        {
+            bonusWeight +=upgrade.bonusWeight;
+
+        }
+        
         bonusSpeed += Mathf.Max(upgrade.bonusSpeed, 0.0f);
         AddPoints(-upgrade.cost);
         bat.SetUpgrade(bonusSize, bonusWeight,bonusSpeed);
