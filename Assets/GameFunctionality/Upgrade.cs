@@ -15,9 +15,9 @@ public class Upgrade : MonoBehaviour
 
     public void Start()
     {
-        GetComponentInChildren<TMPro.TextMeshPro>().text = "Size: " + (bonusSize > 0 ? "+" : "-") + Mathf.Abs(bonusSize) +
-                                                           "\nWeight: " + (bonusWeight > 0 ? "+" : "-") + Mathf.Abs(bonusWeight) +
-                                                           "\nCost: " + (cost > 0 ? "+" : "-") + Mathf.Abs(cost);
+        GetComponentInChildren<TMPro.TextMeshPro>().text = (bonusSize > 0 ? "+" : "-") + Mathf.Abs(bonusSize) + "\n" +
+                                                           (bonusWeight > 0 ? "+" : "-") + Mathf.Abs(bonusWeight) + "\n" +
+                                                           (cost <= 0 ? "+" : "-") + Mathf.Abs(cost);
     }
 
     private void OnDestroy()
