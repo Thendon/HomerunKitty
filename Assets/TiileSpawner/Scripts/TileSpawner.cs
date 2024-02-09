@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TileSpawner : MonoBehaviour
@@ -26,10 +27,17 @@ public class TileSpawner : MonoBehaviour
     protected float m_MaxTime;
 
     [Range(0.0f, 1.0f)]
+    [SerializeField]
     public float boidsSpawnerChance = 0.1f;
 
     [Range(0.0f, 1.0f)]
+    [SerializeField]
     private float noTileChance = 0.2f;
+
+    //private void Start()
+    //{
+    //    this.Spawn();
+    //}
 
     public void Spawn()
     {
@@ -37,15 +45,29 @@ public class TileSpawner : MonoBehaviour
 
         //Random.seed = 
 
+        int zCenter = m_Size.y / 2;
+
+        int[,] center = { { 0, zCenter + 1}, { -1, zCenter }, { 1, zCenter }, { -1, zCenter - 1}, { 0, zCenter - 1 }, { 1, zCenter - 1} };
+
+        int centerSpawnIndex = Random.Range(0, center.GetLength(0));
+
+        Vector2Int centerSpawn = new Vector2Int();
+
+        centerSpawn.x = center[centerSpawnIndex, 0];
+        centerSpawn.y = center[centerSpawnIndex, 1];
+
+
+
         for (int x = -m_Size.x / 2; x <= m_Size.x/2; x++)
         {
             int howMany = m_Size.y - Mathf.Abs(x);
 
             for (int z = 0; z < howMany; z++)
             {
+
                 bool isCenterTile = x == 0 && z == howMany / 2;
 
-                if (!isCenterTile && Random.Range(0.0f, 1.0f) < noTileChance)
+                if (!isCenterTile && (x != centerSpawn.x || z != centerSpawn.y) && Random.Range(0.0f, 1.0f) < noTileChance)
                 {
                     continue;
                 }
@@ -63,7 +85,7 @@ public class TileSpawner : MonoBehaviour
                 }
                 else
                 {
-                    if (Random.Range(0.0f, 1.0f) < boidsSpawnerChance)
+                    if ((x == centerSpawn.x && z == centerSpawn.y) || Random.Range(0.0f, 1.0f) < boidsSpawnerChance)
                     {
                         newTileGameObject = Instantiate(m_SpawnerTile, position, rot, transform);
                     }
@@ -75,6 +97,8 @@ public class TileSpawner : MonoBehaviour
                 }
 
                 newTileGameObject.transform.localScale = Vector3.one * 100f * m_TileSize;
+
+                //newTileGameObject.name = x + " " + z; 
 
                 float timeToDrop = Mathf.Lerp(m_MaxTime, m_MinTime, position.magnitude / maxDistance);
 
