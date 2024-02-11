@@ -39,6 +39,10 @@ public class BoidSpawner : MonoBehaviour
 
     private void SpawnCycle()
     {
+        //happens in menu scene
+        if (boidController == null)
+            return;
+
         for (int i = 0; i < currentSpawnAmount; i++)
         {
             if(boidController.boids.Count >= boidController.maxBoidsCount)
@@ -69,6 +73,7 @@ public class BoidSpawner : MonoBehaviour
 
     void Update()
     {
+
         intervallTimer += Time.deltaTime;
 
         if(intervallTimer >= currentIntervallTime)

@@ -8,7 +8,7 @@ public class ScoreText : MonoBehaviour
 
     public void SetScore(int playerid, int score)
     {
-        text.text = $"Player {playerid}: {score}";
+        text.text = $"Player {playerid + 1}: {score}";
     }
 
     private void Awake()

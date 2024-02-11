@@ -1,60 +1,26 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class EndScreen : MonoBehaviour
 {
-
-    public TMPro.TextMeshProUGUI player1Result;
-    public TMPro.TextMeshProUGUI player2Result;
-    public TMPro.TextMeshProUGUI player3Result;
-    public TMPro.TextMeshProUGUI player4Result;
-
-    private PlayerPointsManager[] playerPoints;
+    public TextMeshProUGUI[] playerResults = new TextMeshProUGUI[0];
 
     public void Start()
     {
-        playerPoints = FindObjectsByType<PlayerPointsManager>(FindObjectsSortMode.InstanceID);
-        if (GameManager.instance.playerCount == 1)
-        {
-            this.player1Result.text = "Player 1: " + playerPoints[0].points.ToString();
-            this.player2Result.enabled = false;
-            this.player3Result.enabled = false;
-            this.player4Result.enabled = false;
-        }
-        else
-        if (GameManager.instance.playerCount == 2)
-        {
-            this.player1Result.text = "Player 1: " + playerPoints[0].points.ToString();
-            this.player2Result.text = "Player 2: " + playerPoints[1].points.ToString();
-            this.player3Result.enabled = false;
-            this.player4Result.enabled = false;
+        List<PlayerPointsManager> points = PlayerManager.instance.players;
+        List<PlayerPointsManager> sortedPoints = points.OrderByDescending(p => p.points).ToList();
 
-        }
-        else
-        if (GameManager.instance.playerCount == 3)
+        for (int i = 0; i < playerResults.Length; i++)
         {
-            this.player1Result.text = "Player 1: " + playerPoints[0].points.ToString();
-            this.player2Result.text = "Player 2: " + playerPoints[1].points.ToString();
-            this.player3Result.text = "Player 3: " + playerPoints[2].points.ToString();
-            this.player4Result.enabled = false;
-
-        }
-        else
-        if (GameManager.instance.playerCount == 4)
-        {
-            this.player1Result.text = "Player 1: " + playerPoints[0].points.ToString();
-            this.player2Result.text = "Player 2: " + playerPoints[1].points.ToString();    
-            this.player3Result.text = "Player 3: " + playerPoints[2].points.ToString();
-            this.player4Result.text = "Player 4: " + playerPoints[3].points.ToString();
-
+            if (i < GameManager.instance.playerCount)
+                playerResults[i].text = (i + 1) + ". place is player " + (sortedPoints[i].playerid + 1) + " with " + sortedPoints[i].points.ToString();
+            else
+                playerResults[i].enabled = false;
         }
     }
-
-
 
     public void Exit()
     {

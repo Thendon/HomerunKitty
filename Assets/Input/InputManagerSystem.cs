@@ -52,8 +52,7 @@ public partial class InputManagerSystem :  MonoBehaviour
 
 	public void AddDevice(InputDevice device)
     {
-		Debug.Log("add device " + device);
-		devices.Add(device);
+        devices.Add(device);
     }
 
 	protected void Awake()

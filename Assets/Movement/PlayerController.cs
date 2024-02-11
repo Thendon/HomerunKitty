@@ -151,6 +151,9 @@ namespace HomerunKitty
 
         private void FixedUpdate()
         {
+            if (rb.isKinematic)
+                return;
+
             // Calculate camera direction and rotation on the character plane
             Vector3 cameraPlanarDirection = Vector3.ProjectOnPlane(Camera.main.transform.rotation * Vector3.forward, Vector3.up).normalized;
             Quaternion cameraPlanarRotation = Quaternion.LookRotation(cameraPlanarDirection, Vector3.up);

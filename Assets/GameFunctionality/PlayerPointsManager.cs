@@ -46,6 +46,13 @@ public class PlayerPointsManager : MonoBehaviour
         startScale = scoreText.transform.localScale;
     }
 
+    public void Init(int playerid, ScoreText scoreText)
+    {
+        this.playerid = playerid;
+        this.scoreText = scoreText;
+        this.scoreText.SetScore(playerid, 0);
+    }
+
     void Update()
     {
         //if(Input.GetKeyDown(KeyCode.E))

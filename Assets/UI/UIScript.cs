@@ -21,14 +21,6 @@ public class UIScript : MonoBehaviour//SingletonGlobalSelfInstancing<UIScript>
     public Button exitBtn;
     public Button singleplayerBtn;
     public Button multiplayerBtn;
-    public Image characterImageP1;
-    public Image characterImageP2;    
-    public Image characterImageP3;
-    public Image characterImageP4;
-    public CharacterChoice player1character;
-    public CharacterChoice player2character;    
-    public CharacterChoice player3character;
-    public CharacterChoice player4character;
     public int currentPlayerCharacterChoice = 1;
 
     public int playercount = 1;
@@ -42,11 +34,6 @@ public class UIScript : MonoBehaviour//SingletonGlobalSelfInstancing<UIScript>
     {
         //configUI.SetActive(false);
         //characterImageP2.enabled = false;
-
-        player1character = CharacterChoice.Cat;
-        player2character = CharacterChoice.Otter;
-        player3character = CharacterChoice.Fox;
-        player4character = CharacterChoice.Cat;
 
         tileSpawner.Spawn();
     }
@@ -96,12 +83,6 @@ public class UIScript : MonoBehaviour//SingletonGlobalSelfInstancing<UIScript>
 
     public void StartLevel()
     {
-           
-        GameManager.instance.player1character = player1character;
-        GameManager.instance.player2character = player2character;
-           
-        GameManager.instance.player3character = player3character;
-        GameManager.instance.player4character = player4character;
         GameManager.instance.LoadLevel();
     }
 

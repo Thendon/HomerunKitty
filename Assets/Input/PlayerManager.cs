@@ -2,6 +2,7 @@ using catHomerun.Utils;
 using HomerunKitty;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,10 +18,14 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
     public List<PlayerPointsManager> players = new List<PlayerPointsManager>();
     public List<GameObject> playerPrefabs = new List<GameObject>();
     public GameObject endScreen;
+    public GameObject scoreTextPrefab;
 
     protected override void Awake()
     {
         base.Awake();
+
+        if (!isValidSingleton)
+            return;
 
         input = new DefaultInput();
         input.Character.SetCallbacks(this);
@@ -36,6 +41,9 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
     protected override void OnDestroy()
     {
         base.Awake();
+
+        if (!isValidSingleton)
+            return;
 
         InputSystem.onDeviceChange -= OnDeviceChanged;
     }
@@ -53,16 +61,20 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
 
     protected void OnEnable()
     {
-        input.Enable();
+        if (input != null)
+            input.Enable();
     }
 
     protected void OnDisable()
     {
-        input.Disable();
+        if (input != null)
+            input.Disable();
     }
 
     public void SpawnPlayer()
     {
+        players.Clear();
+
         targetGroup = FindFirstObjectByType<Cinemachine.CinemachineTargetGroup>();
         GameObject playerInstance = Instantiate(playerPrefabs[Random.Range(0, playerPrefabs.Count)]);
         playerInstance.transform.position = spawnPos;
@@ -73,9 +85,13 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
         var points = playerInstance.GetComponentInChildren<PlayerPointsManager>();
         players.Add(points);
 
-        ScoreText[] scores = FindObjectsByType<ScoreText>(FindObjectsSortMode.InstanceID);
-        points.scoreText = scores[0];
-        points.playerid = 0;
+        //ScoreText[] scores = FindObjectsByType<ScoreText>(FindObjectsSortMode.InstanceID);
+        //points.scoreText = scores[0];
+        //points.playerid = 0;
+        GameObject scores = GameObject.FindGameObjectWithTag("Scores");
+        foreach (Transform child in scores.transform)
+            Destroy(child.gameObject);
+        points.Init(0, Instantiate(scoreTextPrefab, scores.transform).GetComponent<ScoreText>());
 
         foreach (var device in inputDevices)
         {
@@ -86,21 +102,26 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
 
     public void SpawnPlayers()
     {
-        targetGroup = FindFirstObjectByType<Cinemachine.CinemachineTargetGroup>();
-        ScoreText[] scores = FindObjectsByType<ScoreText>(FindObjectsSortMode.InstanceID);
+        players.Clear();
 
-        int i = 0;
+        targetGroup = FindFirstObjectByType<Cinemachine.CinemachineTargetGroup>();
+        //ScoreText[] scores = FindObjectsByType<ScoreText>(FindObjectsSortMode.InstanceID);
+
+        int playerid = 0;
         int numPlayers = inputDevices.Count;
         float spawnAngleOffsetPerPlayer = 360f / (float)numPlayers;
-        
+
+        GameObject scores = GameObject.FindGameObjectWithTag("Scores");
+        foreach (Transform child in scores.transform)
+            Destroy(child.gameObject);
+
         foreach (var device in inputDevices)
         {
             if (device.name == "Mouse")
                 continue;
             Debug.Log("Spawn player for device " + device);
 
-
-            float spawnAngle = spawnAngleOffsetPerPlayer * (float)i;
+            float spawnAngle = spawnAngleOffsetPerPlayer * (float)playerid;
             Vector3 addPos = Quaternion.Euler(0, spawnAngle, 0) * (1.5f * Vector3.right);
             Vector3 spawnPosition = spawnPos + addPos;
 
@@ -113,8 +134,9 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
             playerInput.Init(input);
             playerInput.AddDevice(device);
             var points = playerInstance.GetComponentInChildren<PlayerPointsManager>();
-            points.scoreText = scores[i];
-            points.playerid = i;
+            //points.scoreText = scores[i];
+            //points.playerid = i;
+            points.Init(playerid, Instantiate(scoreTextPrefab, scores.transform).GetComponent<ScoreText>());
             players.Add(points);
 
             if (device.name == "Keyboard")
@@ -129,7 +151,7 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
                 }
             }
             targetGroup.AddMember(playerInstance.transform, 1, 5);
-            i++;
+            playerid++;
         }
     }
 
@@ -151,8 +173,22 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
         {
             Debug.LogError($"{device} already registered");
             return;
-        } 
-        
+        }
+
+        if (device.name == "Touchscreen")
+            return;
+        if (device.name == "AttitudeSensor")
+            return;
+        if (device.name == "Gyroscope")
+            return;
+        if (device.name == "Accelerometer")
+            return;
+        if (device.name == "LinearAccelerationSensor")
+            return;
+        if (device.name == "GravitySensor")
+            return;
+
+        Debug.Log("found device " + device.name);
         inputDevices.Add(device);
     }
 

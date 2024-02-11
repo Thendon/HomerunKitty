@@ -169,17 +169,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 524659110442337360}
   multiplayerActive: 0
-  player1character: 0
-  player2character: 0
-  player3character: 0
-  player4character: 0
   scene: 1
   playerCount: 0
   ingameSong: {fileID: 1671515028}
-  p1Points: 0
-  p2Points: 0
-  p3Points: 0
-  p4Points: 0
 --- !u!1 &219364653
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,6 +746,7 @@ MonoBehaviour:
   - {fileID: 7145346798574303717, guid: 77d4eee991351d24885ae0365edebea2, type: 3}
   - {fileID: 5348901465988230875, guid: 557896832a976bc4297e7e30942772da, type: 3}
   endScreen: {fileID: 6663856778371844503, guid: 53a5f7f7eac7a234381cb5bd40be1b5b, type: 3}
+  scoreTextPrefab: {fileID: 7216680943309440124, guid: 8d3de2941664a77428a3c4a90130fd8b, type: 3}
 --- !u!1 &1669344312
 GameObject:
   m_ObjectHideFlags: 0
