@@ -16,6 +16,7 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
     public Cinemachine.CinemachineTargetGroup targetGroup;
     public List<PlayerPointsManager> players = new List<PlayerPointsManager>();
     public List<GameObject> playerPrefabs = new List<GameObject>();
+    public GameObject endScreen;
 
     protected override void Awake()
     {
@@ -30,6 +31,13 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
         }
 
         InputSystem.onDeviceChange += OnDeviceChanged;
+    }
+
+    protected override void OnDestroy()
+    {
+        base.Awake();
+
+        InputSystem.onDeviceChange -= OnDeviceChanged;
     }
 
     private void Start()
@@ -142,6 +150,7 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
         if (inputDevices.Contains(device))
         {
             Debug.LogError($"{device} already registered");
+            return;
         } 
         
         inputDevices.Add(device);
@@ -185,23 +194,32 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
         if (sys == null)
             return;
 
-        sys.move = context.ReadValue<Vector2>();
+        if (context.canceled)
+            sys.move = Vector2.zero;
+        else
+            sys.move = context.ReadValue<Vector2>();
     }
+
     void DefaultInput.ICharacterActions.OnAim(InputAction.CallbackContext context)
     {
         InputManagerSystem sys = GetInput(context.control.device);
         if (sys == null)
             return;
-        sys.aim = context.ReadValue<Vector2>();
+
         sys.mouseAim = true;
+        if (!context.canceled)
+            sys.aim = context.ReadValue<Vector2>();
     }
+
     void DefaultInput.ICharacterActions.OnLook(InputAction.CallbackContext context)
     {
         InputManagerSystem sys = GetInput(context.control.device);
         if (sys == null)
             return;
-        sys.aim = context.ReadValue<Vector2>();
+
         sys.mouseAim = false;
+        if (!context.canceled)
+            sys.aim = context.ReadValue<Vector2>();
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -224,5 +242,22 @@ public class PlayerManager : SingletonGlobal<PlayerManager>, DefaultInput.IChara
             sys.upgrade = false;
         if (context.started)
             sys.upgrade = true;
+    }
+
+    public void HandlePlayerDeath(PlayerPointsManager player)
+    {
+        PlayerController playerInstance = player.GetComponentInParent<PlayerController>();
+        playerInstance.rb.isKinematic = true;
+
+        targetGroup = FindFirstObjectByType<Cinemachine.CinemachineTargetGroup>();
+        targetGroup.RemoveMember(playerInstance.transform);
+
+        foreach (var p in players)
+        {
+            if (!p.dead)
+                return;
+        }
+
+        Instantiate(endScreen);
     }
 }

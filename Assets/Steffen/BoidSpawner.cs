@@ -18,13 +18,15 @@ public class BoidSpawner : MonoBehaviour
     private float currentSpawnAmount;
     private float intervallTimer;
 
-    void Start()
+    private void Awake()
     {
         spawnArea = GetComponent<Collider>();
-
         // TODO(Steffen): Dont
         boidController = FindObjectOfType<BoidController>();
+    }
 
+    void Start()
+    {
         StartNewCycle();
     }
 

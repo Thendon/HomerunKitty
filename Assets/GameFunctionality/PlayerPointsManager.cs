@@ -17,7 +17,6 @@ public class PlayerPointsManager : MonoBehaviour
     public LayerMask upgradeLayer;
     public string player;
     public bool dead = false;
-    public GameObject endScreen;
     public GameObject scorePrefab;
     public ScoreText scoreText;
     public HighscoreText highScoreText;
@@ -56,7 +55,7 @@ public class PlayerPointsManager : MonoBehaviour
         if (transform.position.y < -10.0f && dead == false)
         {
             dead = true;
-            DeadHandler();
+            PlayerManager.instance.HandlePlayerDeath(this);
         }
     }
 
@@ -146,13 +145,6 @@ public class PlayerPointsManager : MonoBehaviour
 
         scoringRoutine = null;
     }
-
-
-    public void DeadHandler()
-    {
-        GameObject.Instantiate(endScreen);
-    }
-
     
     public void HitScore(Vector3 hitPos, float amount)
     {

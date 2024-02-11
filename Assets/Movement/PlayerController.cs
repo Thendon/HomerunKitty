@@ -31,7 +31,7 @@ namespace HomerunKitty
         float nextJump = 0.0f;
         const float inputEpsilon = 0.01f;
 
-        Rigidbody rb;
+        public Rigidbody rb;
         CapsuleCollider capsuleCollider;
         PlayerPointsManager playerPointsManager;
 

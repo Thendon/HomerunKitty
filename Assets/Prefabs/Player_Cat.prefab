@@ -5738,6 +5738,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   input: {fileID: 4176820389545557594}
+  rb: {fileID: 0}
 --- !u!1001 &748732826599822286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5794,7 +5795,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6351424354997389740, guid: afa1ef6ec73245c4da64d1f171efd044, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -552,6 +552,7 @@ MonoBehaviour:
   m_MinTime: 1e+29
   m_MaxTime: 1e+29
   boidsSpawnerChance: 0
+  noTileChance: 0.2
 --- !u!4 &1437219681
 Transform:
   m_ObjectHideFlags: 0
@@ -752,6 +753,7 @@ MonoBehaviour:
   - {fileID: 4842959004334213339, guid: 158e37982c951cf47929575d24c5427e, type: 3}
   - {fileID: 7145346798574303717, guid: 77d4eee991351d24885ae0365edebea2, type: 3}
   - {fileID: 5348901465988230875, guid: 557896832a976bc4297e7e30942772da, type: 3}
+  endScreen: {fileID: 6663856778371844503, guid: 53a5f7f7eac7a234381cb5bd40be1b5b, type: 3}
 --- !u!1 &1669344312
 GameObject:
   m_ObjectHideFlags: 0
